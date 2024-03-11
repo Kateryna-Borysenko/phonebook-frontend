@@ -1,0 +1,7 @@
+:global(.title) {
+  color: blue;
+}
+
+:global(.subtitle) {
+  color: red;
+}

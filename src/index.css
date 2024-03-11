@@ -1,0 +1,7 @@
+@import '../src/assets/styles/normalize.css';
+
+@import '../src/assets/styles/global.module.css';
+
+@import '../src/assets/theme/palette.css';
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
