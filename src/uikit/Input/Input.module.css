@@ -1,0 +1,46 @@
+.container {
+  position: relative;
+  min-height: 78px;
+}
+
+.input {
+  border: 1px solid var(--lightGray);
+  border-radius: 6px;
+  outline: none;
+  background-color: transparent;
+  color: var(--white);
+  font-size: 14px;
+  line-height: 1.5;
+  transition: all 0.2s ease;
+  padding: 8px 40px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.input:hover,
+.input:focus {
+  border-color: var(--white);
+}
+
+.inputIcon {
+  position: absolute;
+  stroke: var(--lightGray);
+  top: 10px;
+  left: 14px;
+  width: 18px;
+  height: 18px;
+}
+
+.input:hover + .inputIcon,
+.input:focus + .inputIcon {
+  stroke: var(--white);
+}
+
+.stateIcon {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  transform: translate(0, -50%);
+  height: 18px;
+  width: 18px;
+}

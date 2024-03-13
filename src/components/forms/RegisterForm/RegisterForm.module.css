@@ -1,0 +1,66 @@
+.container {
+  width: 400px;
+  padding: 44px 50px;
+  box-sizing: border-box;
+  background-color: var(--bgGray);
+  border-radius: 6px;
+}
+
+.title {
+  color: var(--white);
+  margin-bottom: 24px;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.07;
+}
+
+.form {
+  width: 100%;
+}
+
+.passwordWrapper {
+  position: relative;
+}
+
+.unlockPasswordBtn {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  border: none;
+  stroke: var(--lightGray);
+  fill: var(--lightGray);
+  background-color: transparent;
+  width: 18px;
+  height: 18px;
+}
+
+.passwordWrapper:focus-within .unlockPasswordBtn .lockIcon {
+  stroke: var(--white);
+}
+
+.passwordWrapper:focus-within .unlockPasswordBtn .unlockIcon {
+  fill: var(--white);
+}
+
+.passwordWrapper:hover .unlockPasswordBtn .lockIcon {
+  stroke: var(--white);
+}
+
+.passwordWrapper:hover .unlockPasswordBtn .unlockIcon {
+  fill: var(--white);
+}
+
+.submitBtn {
+  background-color: var(--accent);
+  font-size: 16px;
+  width: 100%;
+  border-radius: 6px;
+  padding: 8px;
+  border: transparent;
+}
+
+.submitBtn:disabled {
+  opacity: 0.5;
+  color: var(--white);
+  cursor: not-allowed;
+}
