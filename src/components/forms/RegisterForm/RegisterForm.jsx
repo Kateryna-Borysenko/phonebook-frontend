@@ -1,14 +1,26 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useDispatch, useSelector } from 'react-redux';
 import Input from '../../../uikit/Input/Input';
 import { LockIcon, UnlockIcon } from '../../Icon';
 import { registrationFormSchema } from '../../../schemas/registrationFormSchema';
 import s from './RegisterForm.module.css';
+import { registerUser } from '../../../redux/auth/authOperations';
+import { getLoading } from '../../../redux/auth/authSelectors';
+import { normalizeUserName } from '../../../helpers/normalizeUserName';
+import Spinner from '../../common/Spinner/Spinner';
 
 const RegisterForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  // const initialFormValues = {
+  //   name: 'kate',
+  //   email: 'k.bor@ukr.net',
+  //   password: 'Qwe12345!',
+  //   confirmPassword: '',
+  // }; //!test
 
   const {
     register,
@@ -18,10 +30,20 @@ const RegisterForm = () => {
   } = useForm({
     mode: 'onBlur',
     resolver: yupResolver(registrationFormSchema),
+    // defaultValues: initialFormValues, //!test
   });
 
+  const loading = useSelector(getLoading);
+
+  const dispatch = useDispatch();
+
   const onSubmit = data => {
-    // console.log('🌷 ~ onSubmit ~ data:', data);
+    const normalizedData = {
+      name: normalizeUserName(data.name),
+      email: data.email,
+      password: data.password,
+    };
+    dispatch(registerUser(normalizedData));
     reset();
   };
 
@@ -88,7 +110,7 @@ const RegisterForm = () => {
           </button>
         </div>
         <button className={s.submitBtn} type="submit" disabled={!isValid}>
-          Register
+          {loading ? <Spinner color="#fff" size="10px" /> : 'Register'}
         </button>
       </form>
     </div>

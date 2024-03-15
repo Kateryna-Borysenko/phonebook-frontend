@@ -1,5 +1,5 @@
 export const NAME_CRITERIA = 'Name may include only letters, numbers.';
-export const NAME_MIN_LENGTH = 'Name must be at least 2 characters';
+export const NAME_MIN_LENGTH = 'Name must be at least 3 characters';
 export const NAME_MAX_LENGTH = 'Name must be 20 characters max';
 export const NAME_REQUIRED = 'Name is required';
 export const EMAIL_CRITERIA = 'Invalid email address';

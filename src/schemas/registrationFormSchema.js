@@ -25,7 +25,7 @@ export const registrationFormSchema = yup.object().shape({
   name: yup
     .string()
     .trim()
-    .min(2, NAME_MIN_LENGTH)
+    .min(3, NAME_MIN_LENGTH)
     .max(20, NAME_MAX_LENGTH)
     .matches(USER_NAME_REGEX, NAME_CRITERIA)
     .required(NAME_REQUIRED),

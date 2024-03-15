@@ -1,0 +1,26 @@
+import axios from 'axios';
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
+import { AUTH_ENDPOINT } from '../../helpers/auth/endpoint';
+
+const SERVER_URL = process.env.REACT_APP_SERVER_BASE_URL;
+axios.defaults.baseURL = SERVER_URL;
+
+export const registerUser = createAsyncThunk(
+  'auth/registerUser',
+  async (credentials, ThunkAPI) => {
+    try {
+      const { data } = await axios.post(AUTH_ENDPOINT.REGISTER, credentials);
+      toast.success(`${data.name}, check your email for verification, please!`);
+      return data;
+    } catch (error) {
+      if (error.response.status === 400) {
+        toast.error(`${error.response?.data?.message}!`);
+      }
+      if (error.response.status === 409) {
+        toast.error(`${error.response?.data?.message}!`);
+      }
+      return ThunkAPI.rejectWithValue(error.message);
+    }
+  },
+);

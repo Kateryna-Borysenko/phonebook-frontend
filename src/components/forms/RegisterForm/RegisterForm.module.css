@@ -32,6 +32,7 @@
   background-color: transparent;
   width: 18px;
   height: 18px;
+  outline: none;
 }
 
 .passwordWrapper:focus-within .unlockPasswordBtn .lockIcon {
