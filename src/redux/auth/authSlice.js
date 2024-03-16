@@ -4,6 +4,7 @@ import { registerUser } from './authOperations';
 
 const initialState = {
   user: { name: '', email: '', avatarURL: '' },
+  token: '',
   loading: false,
   error: null,
 };

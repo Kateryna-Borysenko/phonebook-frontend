@@ -1,13 +1,24 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useDispatch, useSelector } from 'react-redux';
 import Input from '../../../uikit/Input/Input';
 import { LockIcon, UnlockIcon } from '../../Icon';
 import { signInFormSchema } from '../../../schemas/signInFormSchema';
 import s from './SignInForm.module.css';
+import Spinner from '../../common/Spinner/Spinner';
+import { getLoading } from '../../../redux/auth/authSelectors';
+import { loginUser } from '../../../redux/auth/authOperations';
 
 const SignInForm = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const loading = useSelector(getLoading);
+  const dispatch = useDispatch();
+
+  const initialFormValues = {
+    email: 'k.bor@ukr.net',
+    password: 'Qwe12345!',
+  }; //!test
 
   const {
     register,
@@ -17,10 +28,12 @@ const SignInForm = () => {
   } = useForm({
     mode: 'onBlur',
     resolver: yupResolver(signInFormSchema),
+    defaultValues: initialFormValues, //!test
   });
 
   const onSubmit = data => {
     console.log('🌷 ~ onSubmit ~ data:', data);
+    dispatch(loginUser(data));
     reset();
   };
 
@@ -59,7 +72,7 @@ const SignInForm = () => {
         </div>
 
         <button className={s.submitBtn} type="submit" disabled={!isValid}>
-          Sign In
+          {loading ? <Spinner color="#fff" size="10px" /> : 'Sign In'}
         </button>
       </form>
     </div>
