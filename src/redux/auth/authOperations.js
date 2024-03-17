@@ -31,7 +31,7 @@ export const loginUser = createAsyncThunk(
   async (credentials, ThunkAPI) => {
     try {
       const { data } = await axios.post(AUTH_ENDPOINT.LOGIN, credentials);
-      toast.success(`Welcome !`);
+      toast.success(`${data.user.name} welcome to PhoneBook!`);
       return data;
     } catch (error) {
       if (
