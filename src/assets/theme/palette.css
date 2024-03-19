@@ -1,5 +1,6 @@
 :root {
   --accent: #8baa36;
+  /* --accent: #d4fd02; */
   --white: #ffff;
 
   --text-color-primary: #010101;
@@ -7,6 +8,7 @@
   --lightGray: #ffffff4d;
   --bgLight: #fafafa;
   --bgGray: #2a2c36;
+  --bgDark: #121212fa;
 
   --error: #e74a3b;
   --warning: #f6c23e;

@@ -10,7 +10,7 @@ body {
   font-weight: 400;
   font-style: normal;
   color: var(--text-color);
-  background-color: var(-bg-color);
+  background-color: var(--bgDark);
 }
 
 h1,
