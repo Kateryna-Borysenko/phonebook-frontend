@@ -53,6 +53,20 @@ export const loginUser = createAsyncThunk(
   },
 );
 
+export const initiateGoogleAuth = createAsyncThunk(
+  'auth/GoogleAuth',
+  async (_, thunkAPI) => {
+    try {
+      const { data } = await axios.get(AUTH_ENDPOINT.GOOGLE);
+      console.log('🌷  response :', data);
+      return data;
+    } catch (error) {
+      toast.error(error);
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  },
+);
+
 export const logoutUser = createAsyncThunk(
   'auth/logoutUser',
   async (credentials, ThunkAPI) => {

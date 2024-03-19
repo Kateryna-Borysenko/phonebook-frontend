@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Input from '../../../uikit/Input/Input';
 import { LockIcon, UnlockIcon } from '../../Icon';
 import { signInFormSchema } from '../../../schemas/signInFormSchema';
@@ -14,6 +14,7 @@ import GoogleAuth from '../../GoogleAuth/GoogleAuth';
 
 const SignInForm = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
   const loading = useSelector(getLoading);
   const dispatch = useDispatch();
 
@@ -37,6 +38,7 @@ const SignInForm = () => {
     console.log('🌷 ~ onSubmit ~ data:', data);
     dispatch(loginUser(data));
     reset();
+    navigate('/contacts');
   };
 
   return (

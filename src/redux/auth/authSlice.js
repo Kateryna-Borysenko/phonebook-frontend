@@ -1,5 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { registerUser, loginUser, logoutUser } from './authOperations';
+import {
+  registerUser,
+  loginUser,
+  initiateGoogleAuth,
+  logoutUser,
+} from './authOperations';
 
 const initialState = {
   user: { name: '', email: '', avatarURL: '' },
@@ -44,6 +49,22 @@ export const authSlice = createSlice({
         state.loading = false;
       })
 
+      // google login
+      .addCase(initiateGoogleAuth.pending, state => {
+        state.error = null;
+        state.loading = true;
+      })
+      .addCase(initiateGoogleAuth.fulfilled, (state, { payload }) => {
+        // state.user.name = payload.user.name;
+        // state.user.email = payload.user.email;
+        // state.user.avatarURL = payload.user.avatarURL;
+        state.loading = false;
+      })
+      .addCase(initiateGoogleAuth.rejected, (state, { payload }) => {
+        state.error = payload;
+        state.loading = false;
+      })
+
       // logout
       .addCase(logoutUser.pending, state => {
         state.error = null;
@@ -54,7 +75,6 @@ export const authSlice = createSlice({
         state.user.name = '';
         state.user.avatarURL = '';
         state.loading = false;
-        // state.error = payload;
       })
       .addCase(logoutUser.rejected, (state, { payload }) => {
         state.error = payload;
