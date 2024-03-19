@@ -4,7 +4,7 @@ import s from './RegisterPage.module.css';
 
 const RegisterPage = () => {
   return (
-    <div className={s.container}>
+    <div className="Wrapper">
       <Meta title="Registration" />
       <RegisterForm />
     </div>

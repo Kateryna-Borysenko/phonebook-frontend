@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Input from '../../../uikit/Input/Input';
 import { LockIcon, UnlockIcon } from '../../Icon';
 import { signInFormSchema } from '../../../schemas/signInFormSchema';
@@ -9,6 +10,7 @@ import s from './SignInForm.module.css';
 import Spinner from '../../common/Spinner/Spinner';
 import { getLoading } from '../../../redux/auth/authSelectors';
 import { loginUser } from '../../../redux/auth/authOperations';
+import GoogleAuth from '../../GoogleAuth/GoogleAuth';
 
 const SignInForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -75,6 +77,14 @@ const SignInForm = () => {
           {loading ? <Spinner color="#fff" size="10px" /> : 'Sign In'}
         </button>
       </form>
+      <span className={s.text}>or</span>
+      <GoogleAuth title="Log In with Google" />
+      <p className={s.message}>
+        New Here?<Link to="/register">Register</Link>
+      </p>
+      <p className={s.message}>
+        <Link to="/password-reset-token">Forgot your password?</Link>
+      </p>
     </div>
   );
 };

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Input from '../../../uikit/Input/Input';
 import { LockIcon, UnlockIcon } from '../../Icon';
 import { registrationFormSchema } from '../../../schemas/registrationFormSchema';
@@ -10,17 +11,18 @@ import { registerUser } from '../../../redux/auth/authOperations';
 import { getLoading } from '../../../redux/auth/authSelectors';
 import { normalizeUserName } from '../../../helpers/normalizeUserName';
 import Spinner from '../../common/Spinner/Spinner';
+import GoogleAuth from '../../GoogleAuth/GoogleAuth';
 
 const RegisterForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  // const initialFormValues = {
-  //   name: 'kate',
-  //   email: 'k.bor@ukr.net',
-  //   password: 'Qwe12345!',
-  //   confirmPassword: '',
-  // }; //!test
+  const initialFormValues = {
+    name: 'kate',
+    email: 'k.bor@ukr.net',
+    password: 'Qwe12345!',
+    confirmPassword: 'Qwe12345!',
+  }; //!test
 
   const {
     register,
@@ -30,7 +32,7 @@ const RegisterForm = () => {
   } = useForm({
     mode: 'onBlur',
     resolver: yupResolver(registrationFormSchema),
-    // defaultValues: initialFormValues, //!test
+    defaultValues: initialFormValues, //!test
   });
 
   const loading = useSelector(getLoading);
@@ -113,6 +115,11 @@ const RegisterForm = () => {
           {loading ? <Spinner color="#fff" size="10px" /> : 'Register'}
         </button>
       </form>
+      <span className={s.text}>or</span>
+      <GoogleAuth title="Register with Google" />
+      <p className={s.message}>
+        Already Have an Account? <Link to="/login">Log In</Link>
+      </p>
     </div>
   );
 };

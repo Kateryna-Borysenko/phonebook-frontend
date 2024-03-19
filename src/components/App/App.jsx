@@ -8,17 +8,16 @@ import s from './App.module.css';
 
 const App = () => {
   return (
-    <div className={s.container}>
+    <>
       <ToastContainer position="top-right" autoClose={5000} theme="light" />
-
-      {/* <Header /> */}
-      <main className="py-3">
-        <Container>
+      <Container>
+        {/* <Header /> */}
+        <main className="py-3">
           <Outlet />
-        </Container>
-      </main>
-      {/* <Footer /> */}
-    </div>
+        </main>
+        {/* <Footer /> */}
+      </Container>
+    </>
   );
 };
 
