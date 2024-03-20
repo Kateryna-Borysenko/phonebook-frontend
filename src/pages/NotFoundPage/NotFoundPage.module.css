@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  max-width: 800px;
+  background-color: var(--bgDark);
+  border: 1px solid var(--white);
+}
+
+.content_container {
+  margin: auto 0;
+}
+
+.text {
+  font-family: 'Madimi One', sans-serif;
+  color: var(--accent-primary);
+  margin-right: 20px;
+}
+
+.title {
+  margin-bottom: 20px;
+}
+
+.description {
+  padding: 0 40px 0 0;
+  box-sizing: border-box;
+}
+
+.accent {
+  font-weight: 600;
+}
