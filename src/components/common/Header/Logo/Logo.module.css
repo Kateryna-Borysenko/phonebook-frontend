@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  font-family: 'Madimi One', sans-serif;
+  font-size: 28px;
+  margin-left: 8px;
+  color: var(--accent-primary);
+}

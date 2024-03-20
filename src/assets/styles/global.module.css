@@ -7,8 +7,13 @@
 }
 
 :global(.Wrapper) {
-  /* outline: 1px solid red; */
+  outline: 1px solid red;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+:global(.Link) a {
+  color: var(--accent-secondary);
+  transition: 'color 0.5s ease';
 }

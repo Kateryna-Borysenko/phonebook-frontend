@@ -1,0 +1,7 @@
+.container > a {
+  text-transform: uppercase;
+}
+
+.container > a:not(:last-child) {
+  margin-right: 20px;
+}
