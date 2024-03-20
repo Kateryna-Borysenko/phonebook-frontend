@@ -3,10 +3,9 @@ import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { HelmetProvider } from 'react-helmet-async';
-import { RouterProvider } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { store, persistor } from './redux/store';
-
-import { router } from './routes/routes';
+import App from './components/App/App';
 import './index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -15,7 +14,9 @@ root.render(
     <PersistGate loading={null} persistor={persistor}>
       <HelmetProvider>
         <Provider store={store}>
-          <RouterProvider router={router} />
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
         </Provider>
       </HelmetProvider>
     </PersistGate>

@@ -9,3 +9,5 @@ export { ReactComponent as ErrorIcon } from '../../assets/static/error.svg';
 export { ReactComponent as SuccessIcon } from '../../assets/static/success.svg';
 
 export { ReactComponent as GoogleIcon } from '../../assets/static/google.svg';
+
+export { ReactComponent as NotFoundPageIcon } from '../../assets/static/file_error_not_found_icon.svg';
