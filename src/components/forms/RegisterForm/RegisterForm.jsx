@@ -116,8 +116,6 @@ const RegisterForm = () => {
           {loading ? <Spinner color="#fff" size="10px" /> : 'Register'}
         </button>
       </form>
-      <span className={s.text}>or</span>
-      <GoogleAuth title="Register with Google" />
       <p className={s.message}>
         Already Have an Account? <Link to="/login">Log In</Link>
       </p>

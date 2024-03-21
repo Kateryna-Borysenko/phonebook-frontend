@@ -49,22 +49,6 @@ export const authSlice = createSlice({
         state.loading = false;
       })
 
-      // google login
-      .addCase(initiateGoogleAuth.pending, state => {
-        state.error = null;
-        state.loading = true;
-      })
-      .addCase(initiateGoogleAuth.fulfilled, (state, { payload }) => {
-        // state.user.name = payload.user.name;
-        // state.user.email = payload.user.email;
-        // state.user.avatarURL = payload.user.avatarURL;
-        state.loading = false;
-      })
-      .addCase(initiateGoogleAuth.rejected, (state, { payload }) => {
-        state.error = payload;
-        state.loading = false;
-      })
-
       // logout
       .addCase(logoutUser.pending, state => {
         state.error = null;

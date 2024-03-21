@@ -9,7 +9,7 @@ const GoogleAuth = ({ title, onClick }) => {
   const handleGoogleAuth = () => {
     // dispatch(initiateGoogleAuth());
     window.open(
-      `http://localhost:5000/auth/google`,
+      `/auth/google`,
       '_self', //что-бы открылась на той же странице
     );
   };

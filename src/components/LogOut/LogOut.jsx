@@ -8,9 +8,9 @@ const LogOut = () => {
     dispatch(logoutUser());
   };
   return (
-    <div className={s.container}>
-      <button onClick={handleLogout}>Log Out</button>
-    </div>
+    <button className={s.button} onClick={handleLogout}>
+      Log Out
+    </button>
   );
 };
 

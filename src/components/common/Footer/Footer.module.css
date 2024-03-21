@@ -1,0 +1,7 @@
+.footer {
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+  background-color: #161616;
+  border: 1px solid var(--accent-secondary);
+}

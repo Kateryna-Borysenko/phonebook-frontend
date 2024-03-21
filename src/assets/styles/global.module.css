@@ -1,19 +1,25 @@
-:global(.title) {
+:global(.Title) {
   color: blue;
 }
 
-:global(.subtitle) {
+:global(.Subtitle) {
   color: red;
 }
 
 :global(.Wrapper) {
-  outline: 1px solid red;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: calc(100vh - 172px);
 }
 
-:global(.Link) a {
-  color: var(--accent-secondary);
+:global(.Link) {
   transition: 'color 0.5s ease';
+  color: var(--accent-secondary);
+}
+
+:global(.Link:hover) {
+  :global(.Link:hover) {
+    color: var(--white);
+  }
 }
