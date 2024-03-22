@@ -11,7 +11,6 @@ import { registerUser } from '../../../redux/auth/authOperations';
 import { getLoading } from '../../../redux/auth/authSelectors';
 import { normalizeUserName } from '../../../helpers/normalizeUserName';
 import Spinner from '../../common/Spinner/Spinner';
-import GoogleAuth from '../../GoogleAuth/GoogleAuth';
 
 const RegisterForm = () => {
   const [showPassword, setShowPassword] = useState(false);

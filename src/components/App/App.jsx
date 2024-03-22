@@ -24,7 +24,8 @@ const App = () => {
 
   return (
     <>
-      <ToastContainer position="top-right" autoClose={5000} theme="light" />
+      <ToastContainer position="top-right" autoClose={5000} theme="dark" />
+
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<WelcomePage />} />

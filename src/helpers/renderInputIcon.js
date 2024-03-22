@@ -1,4 +1,4 @@
-import { UserIcon, EmailIcon } from '../components/Icon';
+import { UserIcon, EmailIcon, PhoneIcon } from '../components/Icon';
 
 const renderInputIcon = name => {
   switch (name) {
@@ -6,6 +6,8 @@ const renderInputIcon = name => {
       return <UserIcon />;
     case 'email':
       return <EmailIcon />;
+    case 'phone':
+      return <PhoneIcon />;
     default:
       return null;
   }
