@@ -25,6 +25,7 @@
 .inputIcon {
   position: absolute;
   stroke: var(--lightGray);
+  fill: var(--lightGray);
   top: 10px;
   left: 14px;
   width: 18px;
@@ -34,6 +35,7 @@
 .input:hover + .inputIcon,
 .input:focus + .inputIcon {
   stroke: var(--white);
+  fill: var(--white);
 }
 
 .stateIcon {

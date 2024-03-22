@@ -1,20 +1,18 @@
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
-import InputMask from 'react-input-mask';
 import Input from '../../../uikit/Input/Input';
 import { contactFormSchema } from '../../../schemas/contactFormSchema';
 import { normalizeUserName } from '../../../helpers/normalizeUserName';
 import Spinner from '../../common/Spinner/Spinner';
 import s from './ContactForm.module.css';
 import PhoneInput from '../../../uikit/PhoneInput/PhoneInput';
+import { getLoading } from '../../../redux/contacts/contactsSelectors';
+import { createContact } from '../../../redux/contacts/contactsOperations';
 
 const ContactForm = () => {
-  // const loading = useSelector(getLoading);
-  // const navigate = useNavigate();
-  // const dispatch = useDispatch();
+  const loading = useSelector(getLoading);
+  const dispatch = useDispatch();
 
   // const initialFormValues = {
   //   avatarURL: '',
@@ -34,7 +32,15 @@ const ContactForm = () => {
   });
 
   const onSubmit = data => {
-    console.log('🌷  data:', data);
+    const normalizedData = {
+      name: normalizeUserName(data.name),
+      email: data.email,
+      phone: data.phone,
+    };
+    dispatch(createContact(normalizedData));
+    // reset();
+
+    console.log('🌷  data:', normalizedData);
   };
 
   return (
@@ -65,8 +71,8 @@ const ContactForm = () => {
         />
 
         <button className={s.submitBtn} type="submit" disabled={!isValid}>
-          {/* {loading ? <Spinner color="#fff" size="10px" /> : 'Add contact'} */}
-          Add Contact
+          {loading ? <Spinner color="#fff" size="10px" /> : 'Add Contact'}
+          {/* Add Contact */}
         </button>
       </form>
     </div>

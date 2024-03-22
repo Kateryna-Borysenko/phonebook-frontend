@@ -1,10 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {
-  registerUser,
-  loginUser,
-  initiateGoogleAuth,
-  logoutUser,
-} from './authOperations';
+import { registerUser, loginUser, logoutUser } from './authOperations';
 
 const initialState = {
   user: { name: '', email: '', avatarURL: '' },

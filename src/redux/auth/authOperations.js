@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
-import { AUTH_ENDPOINT } from '../../helpers/auth/endpoint';
+import { AUTH_ENDPOINT } from '../../helpers/endpoints/authEndpoint';
 
 const SERVER_URL = process.env.REACT_APP_SERVER_BASE_URL;
 

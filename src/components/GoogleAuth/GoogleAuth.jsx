@@ -1,18 +1,8 @@
-import { useDispatch } from 'react-redux';
-import { initiateGoogleAuth } from '../../redux/auth/authOperations';
 import { GoogleIcon } from '../Icon';
 import s from './GoogleAuth.module.css';
 
 const GoogleAuth = ({ title, onClick }) => {
-  // const dispatch = useDispatch();
-
-  const handleGoogleAuth = () => {
-    // dispatch(initiateGoogleAuth());
-    window.open(
-      `/auth/google`,
-      '_self', //что-бы открылась на той же странице
-    );
-  };
+  const handleGoogleAuth = () => {};
 
   return (
     <div className={s.container}>

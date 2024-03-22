@@ -5,7 +5,7 @@ const Footer = () => {
     <footer className={s.footer}>
       © {new Date().getFullYear()}&nbsp;
       <a href="https://github.com/Kateryna-Borysenko" className="Link">
-        &nbsp; PhoneBook
+        &nbsp; <span className={s.title}>PhoneBook</span>
       </a>
       &nbsp; All rights reserved.
     </footer>
