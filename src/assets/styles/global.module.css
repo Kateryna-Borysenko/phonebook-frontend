@@ -23,3 +23,9 @@
     color: var(--white);
   }
 }
+
+.Toastify__toast-container {
+  position: fixed;
+  top: 80px;
+  right: 15;
+}
