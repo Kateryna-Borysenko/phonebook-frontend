@@ -32,11 +32,16 @@ const ContactForm = () => {
   });
 
   const onSubmit = data => {
-    const normalizedData = {
+    let normalizedData = {
       name: normalizeUserName(data.name),
       email: data.email,
       phone: data.phone,
     };
+
+    if (data.email === '') {
+      normalizedData.email = 'email@example.com';
+    }
+
     dispatch(createContact(normalizedData));
     // reset();
 

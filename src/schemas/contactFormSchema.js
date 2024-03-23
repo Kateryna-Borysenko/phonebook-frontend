@@ -20,13 +20,13 @@ export const contactFormSchema = yup.object().shape({
     .max(20, NAME_MAX_LENGTH)
     .matches(USER_NAME_REGEX, NAME_CRITERIA)
     .required(NAME_REQUIRED),
-
   email: yup
     .string()
     .trim()
     .lowercase()
     .nullable()
-    .matches(/^$|^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i, EMAIL_CRITERIA),
+    .matches(/^$|^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i, EMAIL_CRITERIA)
+    .optional(),
   phone: yup
     .string()
     .matches(/^\(\d{3}\) \d{3}-\d{4}$/, PHONE_CRITERIA)
