@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '../../assets/styles/global.module.css';
@@ -9,18 +9,12 @@ import ContactsPage from '../../pages/ContactsPage/ContactsPage';
 import RegisterPage from '../../pages/RegisterPage/RegisterPage';
 import SignInPage from '../../pages/SignInPage/SignInPage';
 import NotFoundPage from '../../pages/NotFoundPage/NotFoundPage';
-import PrivateRoute from '../routes/PrivateRoute';
 import { useSelector } from 'react-redux';
-import { getUser } from '../../redux/auth/authSelectors';
+import { getLoggedInStatus } from '../../redux/auth/authSelectors';
+import SubscriptionPage from '../../pages/SubscriptionPage/SubscriptionPage';
 
 const App = () => {
-  const user = useSelector(getUser);
-
-  useEffect(() => {
-    if (!user.email) {
-      <Navigate to="/login" />;
-    }
-  }, [user]);
+  const isLoggedIn = useSelector(getLoggedInStatus);
 
   return (
     <>
@@ -29,19 +23,15 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<WelcomePage />} />
+          <Route path="register" element={<RegisterPage />} />
           <Route
-            path="/register"
-            element={<RegisterPage />}
-            redirect="/login"
+            path="login"
+            element={isLoggedIn ? <Navigate to="/contacts" /> : <SignInPage />}
           />
-          <Route path="/login" element={<SignInPage />} />
-          {/* <Route
-            path="contacts"
-            element={<PrivateRoute component={<ContactsPage />} />}
-          /> */}
-
-          {user.email && <Route path="/contacts" element={<ContactsPage />} />}
-
+          {isLoggedIn && <Route path="contacts" element={<ContactsPage />} />}
+          {isLoggedIn && (
+            <Route path="subscription" element={<SubscriptionPage />} />
+          )}
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>

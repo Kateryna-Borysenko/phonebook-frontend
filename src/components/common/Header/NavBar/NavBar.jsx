@@ -1,22 +1,21 @@
 import { useSelector } from 'react-redux';
-import { getUser } from '../../../../redux/auth/authSelectors';
+import { getLoggedInStatus } from '../../../../redux/auth/authSelectors';
 import CustomLink from '../../../CustomLink/CustomLink';
 import s from './NavBar.module.css';
 
 const NavBar = () => {
-  const user = useSelector(getUser);
-  const isUser = !!user;
+  const isLoggedIn = useSelector(getLoggedInStatus);
 
   return (
-    <nav className={s.nav}>
-      <CustomLink to="/">Home</CustomLink>
-      {isUser && (
-        <>
+    <>
+      {isLoggedIn && (
+        <nav className={s.nav}>
+          <CustomLink to="/">Home</CustomLink>
           <CustomLink to="/contacts">Contacts</CustomLink>
           <CustomLink to="/subscription">Subscription</CustomLink>
-        </>
+        </nav>
       )}
-    </nav>
+    </>
   );
 };
 

@@ -7,7 +7,7 @@ const Profile = () => {
   const user = useSelector(getUser);
   return (
     <Link to="/profile" className={s.container}>
-      <img src={user.avatarURL} alt="Avatar" className={s.avatar} />{' '}
+      <img src={user.avatarURL} alt="Avatar" className={s.avatar} />
       <span className={s.title}>{user.name}</span>
     </Link>
   );

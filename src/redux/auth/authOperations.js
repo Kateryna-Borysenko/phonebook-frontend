@@ -38,7 +38,7 @@ export const loginUser = createAsyncThunk(
       if (
         error.response.status === 500 ||
         error.response?.data?.message ===
-          "Cannot read properties of null (reading 'verify')"
+          "Cannot read properties of null - 'verify'"
       ) {
         toast.error('Email is not verified');
       }

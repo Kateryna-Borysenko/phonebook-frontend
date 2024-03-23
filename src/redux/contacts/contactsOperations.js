@@ -8,6 +8,18 @@ const SERVER_URL = process.env.REACT_APP_SERVER_BASE_URL;
 axios.defaults.baseURL = SERVER_URL;
 axios.defaults.withCredentials = true;
 
+export const getAllContacts = createAsyncThunk(
+  'contacts/getAllContacts',
+  async (credentials, ThunkAPI) => {
+    try {
+      const { data } = await axios.get(CONTACTS_ENDPOINT.CONTACTS, credentials);
+      return data;
+    } catch (error) {
+      return ThunkAPI.rejectWithValue(error.message);
+    }
+  },
+);
+
 export const createContact = createAsyncThunk(
   'contacts/createContact',
   async (credentials, ThunkAPI) => {
