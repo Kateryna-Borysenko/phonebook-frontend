@@ -1,0 +1,10 @@
+.row {
+  background-color: var(--bgGray);
+  outline: 1px solid var(--white);
+  margin-bottom: 4px;
+  transition: background-color 0.5s ease;
+}
+
+.row:hover {
+  background-color: var(--accent-primary);
+}

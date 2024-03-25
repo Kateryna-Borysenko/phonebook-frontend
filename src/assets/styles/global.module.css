@@ -1,16 +1,13 @@
 :global(.Title) {
-  color: blue;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 26px;
+  font-weight: 700;
 }
 
 :global(.Subtitle) {
-  color: red;
-}
-
-:global(.Wrapper) {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: calc(100vh - 178px);
+  font-family: 'Open Sans', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
 }
 
 :global(.Link) {

@@ -1,9 +1,10 @@
 .container {
-  width: 400px;
+  width: 100%;
   padding: 44px 50px;
   box-sizing: border-box;
   background-color: var(--bgGray);
   border: 1px solid var(--white);
+  margin: 34px 0;
 }
 
 .title {

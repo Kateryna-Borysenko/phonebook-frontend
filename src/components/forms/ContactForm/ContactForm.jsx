@@ -55,7 +55,6 @@ const ContactForm = () => {
           errors={errors}
           touchedFields={touchedFields}
         />
-
         <PhoneInput
           name="phone"
           register={register}

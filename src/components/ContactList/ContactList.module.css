@@ -1,0 +1,49 @@
+.message {
+  margin-top: 14px;
+}
+
+.groupLetter {
+  display: inline-block;
+  padding: 2px 6px;
+  font-weight: 700;
+  font-size: 16px;
+  margin-top: 16px;
+  color: var(--accent-primary);
+  background-color: var(--bgMediumDark);
+  border-radius: 50%;
+}
+
+.table {
+  width: 100%;
+  border-collapse: separate; /* Разделяем границы ячеек */
+  border-spacing: 0 8px; /* Отступы между строками и столбцами */
+}
+
+.table th,
+.table td {
+  padding: 12px;
+}
+
+.table th:nth-child(1),
+.table td:nth-child(1) {
+  width: 40%; /* Ширина столбца Name */
+}
+
+.table th:nth-child(2),
+.table td:nth-child(2) {
+  width: 52%; /* Ширина столбца Phone */
+}
+
+.table th:nth-child(3),
+.table td:nth-child(3) {
+  width: 8%; /* Ширина столбца Favorite */
+}
+
+.table td {
+  vertical-align: middle; /* Выравнивание содержимого по вертикали */
+  text-align: left; /* Выравнивание текста по правому краю */
+}
+
+tbody > tr:not(:last-child) {
+  margin-bottom: 4px;
+}

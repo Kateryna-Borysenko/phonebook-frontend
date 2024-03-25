@@ -5,12 +5,23 @@
 }
 
 body {
+  height: 100%;
   margin: 0;
   font-family: 'Poppins', sans-serif;
   font-weight: 400;
   font-style: normal;
   color: var(--white);
   background-color: var(--bgDark);
+}
+
+body::-webkit-scrollbar {
+  width: 5px;
+  height: 8px;
+  background-color: var(--lightGray);
+}
+
+body::-webkit-scrollbar-thumb {
+  background: var(--bgDark);
 }
 
 h1,

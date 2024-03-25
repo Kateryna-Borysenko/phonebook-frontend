@@ -1,16 +1,24 @@
+import { StarIcon } from '../../Icon';
 import s from './ContactItem.module.css';
 
 const ContactItem = ({ item }) => {
-  const { _id: id, name, email, phone, favorite } = item;
-
+  const { name, phone, favorite } = item;
   return (
-    <div className={s.container}>
-      <p>ID: {id}</p>
-      <p>Name: {name}</p>
-      <p>Email: {email}</p>
-      <p>Phone: {phone}</p>
-      <p>Favorite: {favorite ? 'Yes' : 'No'}</p>
-    </div>
+    <tr className={s.row}>
+      <td>{name}</td>
+      <td>{phone}</td>
+      <td>
+        {favorite ? (
+          <span role="img" aria-label="favorite" className={s.star_white}>
+            <StarIcon fill="#d4fd02" />
+          </span>
+        ) : (
+          <span role="img" aria-label="not favorite" className={s.star_plain}>
+            <StarIcon />
+          </span>
+        )}
+      </td>
+    </tr>
   );
 };
 

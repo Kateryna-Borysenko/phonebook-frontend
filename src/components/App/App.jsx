@@ -12,9 +12,11 @@ import NotFoundPage from '../../pages/NotFoundPage/NotFoundPage';
 import { useSelector } from 'react-redux';
 import { getLoggedInStatus } from '../../redux/auth/authSelectors';
 import SubscriptionPage from '../../pages/SubscriptionPage/SubscriptionPage';
+import EmailConfirmedPage from '../../pages/EmailConfirmedPage/EmailConfirmedPage';
 
 const App = () => {
   const isLoggedIn = useSelector(getLoggedInStatus);
+  // const isLoggedIn = false;
 
   return (
     <>
@@ -32,6 +34,7 @@ const App = () => {
           {isLoggedIn && (
             <Route path="subscription" element={<SubscriptionPage />} />
           )}
+          <Route path="email-confirmed" element={<EmailConfirmedPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>

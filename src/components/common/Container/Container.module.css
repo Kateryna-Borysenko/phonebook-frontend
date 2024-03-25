@@ -1,6 +1,7 @@
 .container {
-  height: 100vh;
+  position: relative;
   max-width: 1440px;
+  min-height: 100vh;
   padding: 0 15px;
   margin: 0 auto;
   background-image: url('../../../assets/static/rain.png');
