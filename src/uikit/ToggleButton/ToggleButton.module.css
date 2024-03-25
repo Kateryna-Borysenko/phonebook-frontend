@@ -1,0 +1,25 @@
+.button {
+  display: flex;
+  align-items: center;
+  color: var(--accent-secondary);
+  border: none;
+  background-color: #161616;
+  font-size: 20px;
+  margin-bottom: 24px;
+  padding: 4px;
+  transition: color 0.5s ease;
+}
+
+.button .icon {
+  margin-left: 8px;
+  fill: var(--accent-secondary);
+  transition: fill 0.5s ease;
+}
+
+.button:hover {
+  color: var(--white);
+}
+
+.button:hover .icon {
+  fill: var(--white);
+}

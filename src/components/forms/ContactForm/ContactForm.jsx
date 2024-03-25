@@ -34,13 +34,8 @@ const ContactForm = () => {
   const onSubmit = data => {
     let normalizedData = {
       name: normalizeUserName(data.name),
-      email: data.email,
       phone: data.phone,
     };
-
-    if (data.email === '') {
-      normalizedData.email = 'email@example.com';
-    }
 
     dispatch(createContact(normalizedData));
     // reset();
@@ -60,14 +55,7 @@ const ContactForm = () => {
           errors={errors}
           touchedFields={touchedFields}
         />
-        <Input
-          register={register}
-          name="email"
-          type="text"
-          placeholder="Email"
-          errors={errors}
-          touchedFields={touchedFields}
-        />
+
         <PhoneInput
           name="phone"
           register={register}
