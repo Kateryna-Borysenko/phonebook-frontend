@@ -10,7 +10,15 @@ const initialState = {
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {},
+  reducers: {
+    setExpirationTime: (state, action) => {
+      const expirationTime = new Date().getTime() + 60 * 60 * 1000;
+      localStorage.setItem('expirationTime', expirationTime);
+    },
+    removeExpirationTime: (state, action) => {
+      localStorage.removeItem('expirationTime');
+    },
+  },
   extraReducers: builder => {
     builder
       // register
@@ -64,3 +72,5 @@ export const authSlice = createSlice({
       });
   },
 });
+
+export const { setExpirationTime, removeExpirationTime } = authSlice.actions;

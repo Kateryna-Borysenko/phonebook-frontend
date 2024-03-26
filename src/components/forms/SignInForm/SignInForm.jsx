@@ -10,6 +10,7 @@ import s from './SignInForm.module.css';
 import Spinner from '../../common/Spinner/Spinner';
 import { getLoading } from '../../../redux/auth/authSelectors';
 import { loginUser } from '../../../redux/auth/authOperations';
+import { setExpirationTime } from '../../../redux/auth/authSlice';
 import GoogleAuth from '../../GoogleAuth/GoogleAuth';
 
 const SignInForm = () => {
@@ -37,6 +38,7 @@ const SignInForm = () => {
   const onSubmit = data => {
     console.log('🌷 ~ onSubmit ~ data:', data);
     dispatch(loginUser(data));
+    dispatch(setExpirationTime());
     reset();
     navigate('/contacts');
   };

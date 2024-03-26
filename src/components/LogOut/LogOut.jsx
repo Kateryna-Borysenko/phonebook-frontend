@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { logoutUser } from '../../redux/auth/authOperations';
+import { removeExpirationTime } from '../../redux/auth/authSlice';
 import s from './LogOut.module.css';
 import { useNavigate } from 'react-router-dom';
 
@@ -9,6 +10,7 @@ const LogOut = () => {
 
   const handleLogout = () => {
     dispatch(logoutUser());
+    dispatch(removeExpirationTime());
     navigate('/login');
   };
 
