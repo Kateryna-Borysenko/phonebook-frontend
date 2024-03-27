@@ -24,20 +24,22 @@ const NotFoundPage = () => {
   }, [navigate]);
 
   return (
-    <div className={s.container}>
-      <Meta title="Not Found" />
-      <div className={s.icon_container}>
-        <NotFoundPageIcon width="200px" />
-      </div>
-      <div className={s.content_container}>
-        <h1 className={s.title}>
-          <span className={s.text}>Oopsie!</span> We couldn't find this page
-        </h1>
-        <div className={s.description}>
-          Mistakes happen... and that's okay. You will be redirected to
-          <span className={s.accent}> The Home Page</span> and start your
-          journey from there
-          <span className={s.accent}> {countdown} seconds.</span>
+    <div className="Wrapper">
+      <div className={s.container}>
+        <Meta title="Not Found" />
+        <div className={s.icon_container}>
+          <NotFoundPageIcon width="200px" />
+        </div>
+        <div className={s.content_container}>
+          <h1 className={s.title}>
+            <span className={s.text}>Oopsie!</span> We couldn't find this page
+          </h1>
+          <div className={s.description}>
+            Mistakes happen... and that's okay. You will be redirected to
+            <span className={s.accent}> The Home Page</span> and start your
+            journey from there
+            <span className={s.accent}> {countdown} seconds.</span>
+          </div>
         </div>
       </div>
     </div>

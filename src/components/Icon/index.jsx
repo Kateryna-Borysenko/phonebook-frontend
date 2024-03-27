@@ -17,3 +17,6 @@ export { ReactComponent as StarIcon } from '../../assets/static/star.svg';
 
 export { ReactComponent as SettingsIcon } from '../../assets/static/settings.svg';
 export { ReactComponent as LogOutIcon } from '../../assets/static/log-out.svg';
+
+export { ReactComponent as CongratsIcon } from '../../assets/static/congrats.svg';
+export { ReactComponent as WelcomeIcon } from '../../assets/static/welcome.svg';

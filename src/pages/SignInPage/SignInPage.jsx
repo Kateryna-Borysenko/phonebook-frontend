@@ -4,7 +4,7 @@ import s from './SignInPage.module.css';
 
 const SignInPage = () => {
   return (
-    <div className={s.container}>
+    <div className="Wrapper">
       <Meta title="Sign In" />
       <SignInForm />
     </div>

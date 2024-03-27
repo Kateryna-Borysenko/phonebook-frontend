@@ -1,0 +1,15 @@
+.container {
+  width: 50%;
+  text-align: center;
+}
+
+.title {
+  background-color: var(--bgMediumDark);
+}
+
+.description {
+  margin-top: 48px;
+  font-size: 20px;
+  background-color: var(--bgMediumDark);
+  text-align: center;
+}

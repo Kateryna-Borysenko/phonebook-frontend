@@ -3,7 +3,7 @@ import s from './SubscriptionPage.module.css';
 
 const SubscriptionPage = () => {
   return (
-    <div className={s.container}>
+    <div className="Wrapper">
       <Meta title="Subscription" />
       SubscriptionPage
     </div>

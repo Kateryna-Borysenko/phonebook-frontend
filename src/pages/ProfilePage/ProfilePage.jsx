@@ -3,7 +3,7 @@ import s from './ProfilePage.module.css';
 
 const ProfilePage = () => {
   return (
-    <div className={s.container}>
+    <div className="Wrapper">
       <Meta title="User Profile" />
       ProfilePage
     </div>
