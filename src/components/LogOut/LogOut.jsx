@@ -10,7 +10,6 @@ const LogOut = () => {
 
   const handleLogout = () => {
     dispatch(logoutUser());
-    dispatch(removeExpirationTime());
     navigate('/login');
   };
 

@@ -12,7 +12,8 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     setExpirationTime: (state, action) => {
-      const expirationTime = new Date().getTime() + 60 * 60 * 1000;
+      const oneHourInMillis = 60 * 60 * 1000;
+      const expirationTime = Date.now() + oneHourInMillis;
       localStorage.setItem('expirationTime', expirationTime);
     },
     removeExpirationTime: (state, action) => {

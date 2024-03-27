@@ -1,22 +1,35 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '../../assets/styles/global.module.css';
-import { Route, Routes, Navigate } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import Layout from '../common/Layout/Layout';
-import WelcomePage from '../../pages/WelcomePage/WelcomePage';
-import ContactsPage from '../../pages/ContactsPage/ContactsPage';
 import RegisterPage from '../../pages/RegisterPage/RegisterPage';
 import SignInPage from '../../pages/SignInPage/SignInPage';
-import NotFoundPage from '../../pages/NotFoundPage/NotFoundPage';
-import { useSelector } from 'react-redux';
-import { getLoggedInStatus } from '../../redux/auth/authSelectors';
+import WelcomePage from '../../pages/WelcomePage/WelcomePage';
+import ContactsPage from '../../pages/ContactsPage/ContactsPage';
 import SubscriptionPage from '../../pages/SubscriptionPage/SubscriptionPage';
+import NotFoundPage from '../../pages/NotFoundPage/NotFoundPage';
+import PrivateRoutes from '../../routes/PrivateRoutes';
 import EmailConfirmedPage from '../../pages/EmailConfirmedPage/EmailConfirmedPage';
+import { logoutUser } from '../../../src/redux/auth/authOperations';
 
 const App = () => {
-  const isLoggedIn = useSelector(getLoggedInStatus);
-  // const isLoggedIn = false;
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const expirationTime = parseInt(localStorage.getItem('expirationTime'));
+    if (expirationTime) {
+      const currentTime = Date.now();
+      if (currentTime > expirationTime) {
+        dispatch(logoutUser());
+        localStorage.removeItem('expirationTime');
+        navigate('./login');
+      }
+    }
+  }, [dispatch, navigate]);
 
   return (
     <>
@@ -26,15 +39,12 @@ const App = () => {
         <Route path="/" element={<Layout />}>
           <Route index element={<WelcomePage />} />
           <Route path="register" element={<RegisterPage />} />
-          <Route
-            path="login"
-            element={isLoggedIn ? <Navigate to="/contacts" /> : <SignInPage />}
-          />
-          {isLoggedIn && <Route path="contacts" element={<ContactsPage />} />}
-          {isLoggedIn && (
-            <Route path="subscription" element={<SubscriptionPage />} />
-          )}
           <Route path="email-confirmed" element={<EmailConfirmedPage />} />
+          <Route path="login" element={<SignInPage />} />
+          <Route element={<PrivateRoutes />}>
+            <Route path="contacts" element={<ContactsPage />} />
+            <Route path="subscription" element={<SubscriptionPage />} />
+          </Route>
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
