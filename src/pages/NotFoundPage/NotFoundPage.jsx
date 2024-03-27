@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { NotFoundPageIcon } from '../../components/Icon';
 import s from './NotFoundPage.module.css';
+import Meta from '../../components/common/Meta/Meta';
 
 const NotFoundPage = () => {
   const navigate = useNavigate();
@@ -24,6 +25,7 @@ const NotFoundPage = () => {
 
   return (
     <div className={s.container}>
+      <Meta title="Not Found" />
       <div className={s.icon_container}>
         <NotFoundPageIcon width="200px" />
       </div>
