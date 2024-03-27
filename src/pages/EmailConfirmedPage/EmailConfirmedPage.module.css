@@ -1,0 +1,21 @@
+.container {
+  width: 50%;
+  text-align: center;
+}
+
+.title {
+  background-color: var(--bgMediumDark);
+  margin-bottom: 24px;
+}
+
+.description {
+  margin-top: 24px;
+  font-size: 20px;
+  background-color: var(--bgMediumDark);
+  text-align: center;
+}
+
+.accent {
+  font-weight: 700;
+  color: var(--accent-secondary);
+}

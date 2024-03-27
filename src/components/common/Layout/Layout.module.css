@@ -1,5 +1,8 @@
-.wrapper {
-  flex: 1;
+.container {
+  min-height: calc(100vh - 178px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .footerFixed {

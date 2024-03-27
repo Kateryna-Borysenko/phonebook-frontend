@@ -48,7 +48,9 @@ const ContactList = () => {
       ) : (
         <div className={s.container}>
           <h1 className="Title">Contact List : </h1>
-          <ButtonGroup />
+          {Object.keys(sortedAndGroupedContacts).length !== 0 && (
+            <ButtonGroup />
+          )}
           {Object.entries(sortedAndGroupedContacts).map(
             ([letter, contacts]) => (
               <div key={letter}>

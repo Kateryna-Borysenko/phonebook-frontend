@@ -37,7 +37,7 @@ const Layout = () => {
   return (
     <Container>
       <Header />
-      <main className={s.wrapper}>
+      <main className={s.container}>
         <Suspense fallback={<Spinner />}>
           <Outlet />
         </Suspense>

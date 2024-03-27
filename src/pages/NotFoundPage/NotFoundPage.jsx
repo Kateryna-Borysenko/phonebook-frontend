@@ -37,7 +37,7 @@ const NotFoundPage = () => {
           <div className={s.description}>
             Mistakes happen... and that's okay. You will be redirected to
             <span className={s.accent}> The Home Page</span> and start your
-            journey from there
+            journey from there after
             <span className={s.accent}> {countdown} seconds.</span>
           </div>
         </div>

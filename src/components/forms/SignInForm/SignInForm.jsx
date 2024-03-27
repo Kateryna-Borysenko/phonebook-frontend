@@ -36,11 +36,11 @@ const SignInForm = () => {
   });
 
   const onSubmit = data => {
-    console.log('🌷 ~ onSubmit ~ data:', data);
-    dispatch(loginUser(data));
-    dispatch(setExpirationTime());
-    reset();
-    navigate('/contacts');
+    dispatch(loginUser(data)).then(() => {
+      dispatch(setExpirationTime());
+      reset();
+      navigate('/contacts');
+    });
   };
 
   return (

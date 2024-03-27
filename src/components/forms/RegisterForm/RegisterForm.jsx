@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Input from '../../../uikit/Input/Input';
 import { LockIcon, UnlockIcon } from '../../Icon';
 import { registrationFormSchema } from '../../../schemas/registrationFormSchema';
@@ -17,7 +17,6 @@ const RegisterForm = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const loading = useSelector(getLoading);
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const initialFormValues = {
@@ -46,7 +45,6 @@ const RegisterForm = () => {
     };
     dispatch(registerUser(normalizedData));
     reset();
-    navigate('/login');
   };
 
   return (
