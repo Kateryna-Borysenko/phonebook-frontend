@@ -1,0 +1,26 @@
+.container {
+  display: flex;
+  justify-content: center;
+  margin: 24px 0 0;
+}
+
+.button {
+  background-color: transparent;
+  border: none;
+  color: var(--white);
+  padding: 8px 14px;
+  width: 50%;
+  text-transform: uppercase;
+  border: 1px solid var(--white);
+  background-color: var(--bgMediumDark);
+  transition: background-color 0.5s ease;
+}
+
+.button:first-child {
+  border-right: none;
+}
+
+.activeButton {
+  composes: button;
+  background-color: var(--accent-primary);
+}

@@ -6,6 +6,7 @@ import ContactItem from './ContactItem/ContactItem';
 import Spinner from '../common/Spinner/Spinner';
 import { getLoading } from '../../redux/contacts/contactsSelectors';
 import { getContacts } from '../../redux/contacts/contactsSelectors';
+import ButtonGroup from '../../uikit/ButtonGroup/ButtonGroup';
 
 //TODO: pagination and filter /all/favorites
 
@@ -47,6 +48,7 @@ const ContactList = () => {
       ) : (
         <div className={s.container}>
           <h1 className="Title">Contact List : </h1>
+          <ButtonGroup />
           {Object.entries(sortedAndGroupedContacts).map(
             ([letter, contacts]) => (
               <div key={letter}>
