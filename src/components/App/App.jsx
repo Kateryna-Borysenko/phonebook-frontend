@@ -14,6 +14,7 @@ import NotFoundPage from '../../pages/NotFoundPage/NotFoundPage';
 import PrivateRoutes from '../../routes/PrivateRoutes';
 import EmailConfirmedPage from '../../pages/EmailConfirmedPage/EmailConfirmedPage';
 import { logoutUser } from '../../../src/redux/auth/authOperations';
+import ProfilePage from '../../pages/ProfilePage/ProfilePage';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -44,6 +45,7 @@ const App = () => {
           <Route element={<PrivateRoutes />}>
             <Route path="contacts" element={<ContactsPage />} />
             <Route path="subscription" element={<SubscriptionPage />} />
+            <Route path="profile" element={<ProfilePage />} />
           </Route>
           <Route path="*" element={<NotFoundPage />} />
         </Route>

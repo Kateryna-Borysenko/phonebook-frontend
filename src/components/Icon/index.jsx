@@ -14,3 +14,6 @@ export { ReactComponent as GoogleIcon } from '../../assets/static/google.svg';
 export { ReactComponent as NotFoundPageIcon } from '../../assets/static/file_error_not_found_icon.svg';
 
 export { ReactComponent as StarIcon } from '../../assets/static/star.svg';
+
+export { ReactComponent as SettingsIcon } from '../../assets/static/settings.svg';
+export { ReactComponent as LogOutIcon } from '../../assets/static/log-out.svg';

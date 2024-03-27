@@ -1,4 +1,5 @@
 .container {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,4 +15,35 @@
   height: 40px;
   border-radius: 50%;
   overflow: hidden;
+}
+
+.nav {
+  position: absolute;
+  width: 180px;
+  top: 70px;
+  right: 0;
+  z-index: 100;
+  padding: 14px;
+  background-color: var(--bgGray);
+  border: 1px solid var(--white);
+}
+
+.settings {
+  display: flex;
+  width: 100%;
+  text-transform: none;
+  margin-bottom: 4px;
+  padding: 8px 14px;
+  box-sizing: border-box;
+  transition: background-color 0.5s ease;
+}
+
+.settings:hover {
+  background-color: var(--accent-primary);
+}
+
+.icon {
+  fill: var(--white);
+  margin-right: 14px;
+  width: 24px;
 }

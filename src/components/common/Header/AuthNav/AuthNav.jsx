@@ -2,7 +2,6 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getLoggedInStatus } from '../../../../redux/auth/authSelectors';
 import Profile from '../Profile/Profile';
-import LogOut from '../../../LogOut/LogOut';
 import s from './AuthNav.module.css';
 
 const AuthNav = () => {
@@ -13,7 +12,6 @@ const AuthNav = () => {
       {isLoggedIn && (
         <>
           <Profile />
-          <LogOut />
         </>
       )}
 

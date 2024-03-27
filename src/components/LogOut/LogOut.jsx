@@ -1,8 +1,8 @@
 import { useDispatch } from 'react-redux';
-import { logoutUser } from '../../redux/auth/authOperations';
-import { removeExpirationTime } from '../../redux/auth/authSlice';
-import s from './LogOut.module.css';
 import { useNavigate } from 'react-router-dom';
+import { logoutUser } from '../../redux/auth/authOperations';
+import { LogOutIcon } from '../Icon';
+import s from './LogOut.module.css';
 
 const LogOut = () => {
   const dispatch = useDispatch();
@@ -15,7 +15,7 @@ const LogOut = () => {
 
   return (
     <button className={s.button} onClick={handleLogout}>
-      Log Out
+      <LogOutIcon className={s.icon} /> Log Out
     </button>
   );
 };
