@@ -1,3 +1,12 @@
+.spinner_container {
+  display: flex;
+  align-items: center;
+}
+
+.spinner_container > h1 {
+  margin-right: 24px;
+}
+
 .message {
   margin-top: 14px;
 }
