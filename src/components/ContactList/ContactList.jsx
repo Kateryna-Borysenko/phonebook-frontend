@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getLoading } from '../../redux/contacts/contactsSelectors';
 import {
@@ -30,8 +30,9 @@ const ContactList = () => {
     }
   }, [dispatch, showFavorites]);
 
-  const sortedAndGroupedContacts = contacts => {
-    const sortedContacts = [...contacts].sort((a, b) =>
+  const sortedAndGroupedContacts = useMemo(() => {
+    const data = showFavorites ? favorites : contacts;
+    const sortedContacts = [...data].sort((a, b) =>
       a.name.localeCompare(b.name),
     );
     const groupedContacts = {};
@@ -47,7 +48,7 @@ const ContactList = () => {
     });
 
     return groupedContacts;
-  };
+  }, [contacts, favorites, showFavorites]);
 
   const handleShowFavorites = () => {
     setShowFavorites(true);
@@ -74,38 +75,39 @@ const ContactList = () => {
             onFavoritesClick={handleShowFavorites}
             onAllClick={handleShowAll}
           />
-          {(showFavorites && Object.keys(favorites).length !== 0) ||
-          (!showFavorites && Object.keys(contacts).length !== 0) ? (
+          {showFavorites && Object.keys(favorites).length !== 0 ? (
             <>
-              {showFavorites
-                ? Object.entries(sortedAndGroupedContacts(favorites)).map(
-                    ([letter, contacts]) => (
-                      <div key={letter}>
-                        <div className={s.groupLetter}>{letter}</div>
-                        <table className={s.table}>
-                          <tbody>
-                            {contacts.map(contact => (
-                              <ContactItem key={contact._id} item={contact} />
-                            ))}
-                          </tbody>
-                        </table>
-                      </div>
-                    ),
-                  )
-                : Object.entries(sortedAndGroupedContacts(contacts)).map(
-                    ([letter, contacts]) => (
-                      <div key={letter}>
-                        <div className={s.groupLetter}>{letter}</div>
-                        <table className={s.table}>
-                          <tbody>
-                            {contacts.map(contact => (
-                              <ContactItem key={contact._id} item={contact} />
-                            ))}
-                          </tbody>
-                        </table>
-                      </div>
-                    ),
-                  )}
+              {Object.entries(sortedAndGroupedContacts).map(
+                ([letter, contacts]) => (
+                  <div key={letter}>
+                    <div className={s.groupLetter}>{letter}</div>
+                    <table className={s.table}>
+                      <tbody>
+                        {contacts.map(contact => (
+                          <ContactItem key={contact._id} item={contact} />
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                ),
+              )}
+            </>
+          ) : !showFavorites && Object.keys(contacts).length !== 0 ? (
+            <>
+              {Object.entries(sortedAndGroupedContacts).map(
+                ([letter, contacts]) => (
+                  <div key={letter}>
+                    <div className={s.groupLetter}>{letter}</div>
+                    <table className={s.table}>
+                      <tbody>
+                        {contacts.map(contact => (
+                          <ContactItem key={contact._id} item={contact} />
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                ),
+              )}
             </>
           ) : (
             <p className={s.message}>
