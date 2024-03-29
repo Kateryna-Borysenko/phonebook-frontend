@@ -64,7 +64,6 @@ const ContactForm = () => {
 
         <button className={s.submitBtn} type="submit" disabled={!isValid}>
           {loading ? <Spinner color="#fff" size="10px" /> : 'Add Contact'}
-          {/* Add Contact */}
         </button>
       </form>
     </div>

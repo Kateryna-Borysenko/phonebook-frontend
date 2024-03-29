@@ -20,6 +20,20 @@ export const getAllContacts = createAsyncThunk(
   },
 );
 
+export const getFavoriteContacts = createAsyncThunk(
+  'contacts/getFavoriteContacts',
+  async (_, ThunkAPI) => {
+    try {
+      const { data } = await axios.get(
+        `${CONTACTS_ENDPOINT.CONTACTS}?favorite=true`,
+      );
+      return data;
+    } catch (error) {
+      return ThunkAPI.rejectWithValue(error.message);
+    }
+  },
+);
+
 export const createContact = createAsyncThunk(
   'contacts/createContact',
   async (credentials, ThunkAPI) => {
