@@ -12,7 +12,6 @@ const NavBar = () => {
         <nav className={s.nav}>
           <CustomLink to="/">Home</CustomLink>
           <CustomLink to="/contacts">Contacts</CustomLink>
-          <CustomLink to="/subscription">Subscription</CustomLink>
         </nav>
       )}
     </>
