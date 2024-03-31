@@ -8,26 +8,14 @@ const SERVER_URL = process.env.REACT_APP_SERVER_BASE_URL;
 axios.defaults.baseURL = SERVER_URL;
 axios.defaults.withCredentials = true;
 
-export const getAllContacts = createAsyncThunk(
+export const getContacts = createAsyncThunk(
   'contacts/getAllContacts',
-  async (credentials, ThunkAPI) => {
+  async ({ page = 1, limit = 10, favorite = undefined }, ThunkAPI) => {
     try {
-      const { data } = await axios.get(CONTACTS_ENDPOINT.CONTACTS, credentials);
-      return data;
-    } catch (error) {
-      return ThunkAPI.rejectWithValue(error.message);
-    }
-  },
-);
-
-export const getFavoriteContacts = createAsyncThunk(
-  'contacts/getFavoriteContacts',
-  async (_, ThunkAPI) => {
-    try {
-      const { data } = await axios.get(
-        `${CONTACTS_ENDPOINT.CONTACTS}?favorite=true`,
-      );
-      return data;
+      const response = await axios.get(CONTACTS_ENDPOINT.CONTACTS, {
+        params: { page, limit, favorite },
+      });
+      return response.data;
     } catch (error) {
       return ThunkAPI.rejectWithValue(error.message);
     }

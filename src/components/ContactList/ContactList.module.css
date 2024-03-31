@@ -56,3 +56,11 @@
 tbody > tr:not(:last-child) {
   margin-bottom: 4px;
 }
+
+.pageInfo {
+  display: flex;
+  justify-content: end;
+  border-radius: 4px;
+  background-color: var(--bgMediumDark);
+  margin-top: 24px;
+}

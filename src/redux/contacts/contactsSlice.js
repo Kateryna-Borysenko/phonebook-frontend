@@ -1,14 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {
-  getAllContacts,
-  getFavoriteContacts,
-  createContact,
-} from './contactsOperations';
+import { getContacts, createContact } from './contactsOperations';
 
 const initialState = {
   data: {
     contacts: [],
-    favorites: [],
+    totalPages: 0,
+    currentPage: 0,
+    pageSize: 0,
+    totalContacts: 0,
     loading: false,
     error: null,
   },
@@ -23,32 +22,21 @@ export const contactsSlice = createSlice({
   extraReducers: builder => {
     builder
 
-      // ***************  GET ALL CONTACTS  *************** //
+      // ***************  GET CONTACTS  *************** //
 
-      .addCase(getAllContacts.pending, state => {
+      .addCase(getContacts.pending, state => {
         state.data.loading = true;
         state.data.error = null;
       })
-      .addCase(getAllContacts.fulfilled, (state, { payload }) => {
+      .addCase(getContacts.fulfilled, (state, { payload }) => {
         state.data.contacts = payload.contacts;
+        state.data.totalPages = Number(payload.totalPages);
+        state.data.currentPage = Number(payload.currentPage);
+        state.data.pageSize = Number(payload.pageSize);
+        state.data.totalContacts = Number(payload.totalContacts);
         state.data.loading = false;
       })
-      .addCase(getAllContacts.rejected, (state, { payload }) => {
-        state.data.loading = false;
-        state.data.error = payload;
-      })
-
-      // ***************  GET FAVORITES CONTACTS  *************** //
-
-      .addCase(getFavoriteContacts.pending, state => {
-        state.data.loading = true;
-        state.data.error = null;
-      })
-      .addCase(getFavoriteContacts.fulfilled, (state, { payload }) => {
-        state.data.favorites = payload.contacts;
-        state.data.loading = false;
-      })
-      .addCase(getFavoriteContacts.rejected, (state, { payload }) => {
+      .addCase(getContacts.rejected, (state, { payload }) => {
         state.data.loading = false;
         state.data.error = payload;
       })

@@ -27,7 +27,7 @@ const App = () => {
       if (currentTime > expirationTime) {
         dispatch(logoutUser());
         localStorage.removeItem('expirationTime');
-        navigate('./login');
+        navigate('/login');
       }
     }
   }, [dispatch, navigate]);
