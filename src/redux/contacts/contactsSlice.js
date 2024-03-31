@@ -1,5 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getContacts, createContact } from './contactsOperations';
+import {
+  getContacts,
+  updateFavoriteStatus,
+  createContact,
+} from './contactsOperations';
 
 const initialState = {
   data: {
@@ -52,6 +56,29 @@ export const contactsSlice = createSlice({
         state.data.contacts = [...state.data.contacts, payload];
       })
       .addCase(createContact.rejected, (state, { payload }) => {
+        state.data.loading = false;
+        state.data.error = payload;
+      })
+
+      // ***************  UPDATE FAVORITE CONTACT STATUS *************** //
+
+      .addCase(updateFavoriteStatus.pending, state => {
+        state.data.loading = true;
+        state.data.error = null;
+      })
+      .addCase(updateFavoriteStatus.fulfilled, (state, { payload }) => {
+        state.data.loading = false;
+        const updatedContactIndex = state.data.contacts.findIndex(
+          contact => contact._id === payload._id,
+        );
+        if (updatedContactIndex !== -1) {
+          state.data.contacts[updatedContactIndex] = {
+            ...state.data.contacts[updatedContactIndex],
+            favorite: payload.favorite,
+          };
+        }
+      })
+      .addCase(updateFavoriteStatus.rejected, (state, { payload }) => {
         state.data.loading = false;
         state.data.error = payload;
       });

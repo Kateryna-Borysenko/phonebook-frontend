@@ -8,3 +8,7 @@
 .row:hover {
   background-color: var(--accent-primary);
 }
+
+.icon:hover {
+  cursor: pointer;
+}

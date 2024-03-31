@@ -57,10 +57,6 @@ const ContactList = () => {
     setCurrentPage(page);
   };
 
-  useEffect(() => {
-    dispatch(getContacts({ favorite: showFavorites, page: currentPage }));
-  }, [dispatch, showFavorites, currentPage]);
-
   return (
     <>
       {loading ? (

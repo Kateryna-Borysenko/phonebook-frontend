@@ -47,3 +47,26 @@ export const createContact = createAsyncThunk(
     }
   },
 );
+
+export const updateFavoriteStatus = createAsyncThunk(
+  'contacts/updateFavoriteStatus',
+  async ({ id, favorite }, { rejectWithValue }) => {
+    try {
+      const response = await axios.patch(
+        `${CONTACTS_ENDPOINT.CONTACTS}/${id}/favorite`,
+        {
+          favorite,
+        },
+      );
+      return response.data;
+    } catch (error) {
+      if (error.response && error.response.status === 404) {
+        return rejectWithValue('Contact not found.');
+      } else {
+        return rejectWithValue(
+          'An error occurred while updating the favorite status.',
+        );
+      }
+    }
+  },
+);
