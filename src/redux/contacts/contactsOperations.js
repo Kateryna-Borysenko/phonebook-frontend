@@ -22,6 +22,24 @@ export const getContacts = createAsyncThunk(
   },
 );
 
+export const getSingleContact = createAsyncThunk(
+  'contacts/getSingleContact',
+  async ({ id }, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.get(`${CONTACTS_ENDPOINT.CONTACTS}/${id}`);
+      return data;
+    } catch (error) {
+      if (error.response && error.response?.data?.message === 404) {
+        toast.error('Contact not found');
+      } else {
+        console.error('Error getting single contact:', error);
+        toast.error('Failed to retrieve contact details');
+      }
+      return rejectWithValue(error.message);
+    }
+  },
+);
+
 export const createContact = createAsyncThunk(
   'contacts/createContact',
   async (credentials, ThunkAPI) => {

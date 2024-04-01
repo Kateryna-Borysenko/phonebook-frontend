@@ -1,30 +1,29 @@
 import { useDispatch } from 'react-redux';
-import { updateFavoriteStatus } from '../../../redux/contacts/contactsOperations';
+import { getSingleContact } from '../../../redux/contacts/contactsOperations';
 import { StarIcon, UserIcon } from '../../Icon';
 import s from './ContactItem.module.css';
+import { useNavigate } from 'react-router-dom';
 
 const ContactItem = ({ item }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const { _id, name, phone, favorite } = item;
 
-  const toggleFavorite = () => {
-    dispatch(updateFavoriteStatus({ id: _id, favorite: !favorite }));
+  const handleClick = () => {
+    dispatch(getSingleContact({ id: _id }));
+    navigate(`/contacts/${_id}`);
   };
 
   return (
-    <tr className={s.row}>
+    <tr className={s.row} onClick={handleClick}>
       <td>
         <UserIcon stroke="#fff" className={s.avatar} />
       </td>
       <td>{name}</td>
       <td>{phone}</td>
       <td>
-        <span
-          role="button"
-          aria-label="toggle favorite"
-          className={favorite ? s.star_white : s.star_plain}
-          onClick={toggleFavorite}
-        >
+        <span className={favorite ? s.star_white : s.star_plain}>
           <StarIcon fill={favorite ? '#d4fd02' : '#fff'} className={s.icon} />
         </span>
       </td>

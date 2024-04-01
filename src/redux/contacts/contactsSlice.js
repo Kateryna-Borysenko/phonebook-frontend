@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
   getContacts,
+  getSingleContact,
   updateFavoriteStatus,
   createContact,
 } from './contactsOperations';
@@ -8,6 +9,7 @@ import {
 const initialState = {
   data: {
     contacts: [],
+    contact: {},
     totalPages: 0,
     currentPage: 0,
     pageSize: 0,
@@ -41,6 +43,20 @@ export const contactsSlice = createSlice({
         state.data.loading = false;
       })
       .addCase(getContacts.rejected, (state, { payload }) => {
+        state.data.loading = false;
+        state.data.error = payload;
+      })
+
+      // ***************  GET SINGLE CONTACT  ************** //
+
+      .addCase(getSingleContact.pending, state => {
+        state.data.loading = true;
+        state.data.error = null;
+      })
+      .addCase(getSingleContact.fulfilled, (state, { payload }) => {
+        state.data.contact = payload;
+      })
+      .addCase(getSingleContact.rejected, (state, { payload }) => {
         state.data.loading = false;
         state.data.error = payload;
       })
@@ -82,7 +98,5 @@ export const contactsSlice = createSlice({
         state.data.loading = false;
         state.data.error = payload;
       });
-
-    // ***************  DELETE CONTACT  ************** //
   },
 });

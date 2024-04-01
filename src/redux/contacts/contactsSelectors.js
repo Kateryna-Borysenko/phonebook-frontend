@@ -13,3 +13,5 @@ export const getPageSize = state => state.contacts.data.pageSize;
 export const getTotalContacts = state => state.contacts.data.totalContacts;
 
 export const getFilter = state => state.contacts.filter;
+
+export const getSingleContact = state => state.contacts.data.contact;
