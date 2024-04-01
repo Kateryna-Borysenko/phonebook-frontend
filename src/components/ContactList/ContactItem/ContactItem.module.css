@@ -12,3 +12,13 @@
 .icon:hover {
   cursor: pointer;
 }
+
+.avatar {
+  display: flex;
+  align-items: center;
+  padding: 2px;
+  box-sizing: border-box;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}

@@ -30,10 +30,10 @@ const ContactList = () => {
   const [activeButton, setActiveButton] = useState('All');
 
   useEffect(() => {
-    if (showFavorites) {
-      dispatch(getContacts({ favorite: showFavorites, page: currentPage }));
-    } else {
+    if (!showFavorites) {
       dispatch(getContacts({ page: currentPage }));
+    } else {
+      dispatch(getContacts({ favorite: showFavorites, page: currentPage }));
     }
   }, [dispatch, showFavorites, currentPage, activeButton]);
 

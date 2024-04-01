@@ -35,17 +35,22 @@
 
 .table th:nth-child(1),
 .table td:nth-child(1) {
-  width: 40%; /* Ширина столбца Name */
+  width: 12%; /* Ширина столбца Name */
 }
 
 .table th:nth-child(2),
 .table td:nth-child(2) {
-  width: 52%; /* Ширина столбца Phone */
+  width: 33%; /* Ширина столбца Name */
 }
 
 .table th:nth-child(3),
 .table td:nth-child(3) {
-  width: 8%; /* Ширина столбца Favorite */
+  width: 45%; /* Ширина столбца Phone */
+}
+
+.table th:nth-child(3),
+.table td:nth-child(4) {
+  width: 10%; /* Ширина столбца Favorite */
 }
 
 .table td {

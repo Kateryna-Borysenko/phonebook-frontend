@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { updateFavoriteStatus } from '../../../redux/contacts/contactsOperations';
-import { StarIcon } from '../../Icon';
+import { StarIcon, UserIcon } from '../../Icon';
 import s from './ContactItem.module.css';
 
 const ContactItem = ({ item }) => {
@@ -13,6 +13,9 @@ const ContactItem = ({ item }) => {
 
   return (
     <tr className={s.row}>
+      <td>
+        <UserIcon stroke="#fff" className={s.avatar} />
+      </td>
       <td>{name}</td>
       <td>{phone}</td>
       <td>
