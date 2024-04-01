@@ -6,7 +6,7 @@ export const normalizeUserName = name =>
         return word;
       }
       const firstUpCaseLetter = word.charAt(0).toUpperCase();
-      const anotherLetters = word.substring(1);
-      return `${firstUpCaseLetter}${anotherLetters}`;
+      const restOfWord = word.substring(1).toLowerCase();
+      return `${firstUpCaseLetter}${restOfWord}`;
     })
     .join('');
