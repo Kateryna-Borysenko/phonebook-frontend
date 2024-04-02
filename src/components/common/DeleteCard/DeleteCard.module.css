@@ -1,0 +1,29 @@
+.title {
+  margin-bottom: 24px;
+}
+
+.button {
+  border: none;
+  text-transform: uppercase;
+  padding: 8px 12px;
+  box-sizing: border-box;
+  min-width: 120px;
+  color: var(--white);
+  letter-spacing: 1px;
+}
+
+.btnWrapper {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.yesBtn {
+  composes: button;
+  background-color: var(--error);
+}
+
+.cancelBtn {
+  composes: button;
+  background-color: var(--accent-primary);
+}
