@@ -1,0 +1,40 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  z-index: 100;
+}
+
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 400px;
+  width: 100%;
+  background-color: var(--bgGray);
+  border: 1px solid var(--white);
+  z-index: 101;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 8px;
+  right: 5px;
+  padding: 8px;
+  font-size: 28px;
+  line-height: 0.6;
+  color: var(--white);
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.content {
+  padding: 32px;
+  box-sizing: border-box;
+}
