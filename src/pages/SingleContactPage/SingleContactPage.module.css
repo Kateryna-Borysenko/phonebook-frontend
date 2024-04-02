@@ -83,6 +83,7 @@
   min-width: 120px;
   color: var(--white);
   letter-spacing: 1px;
+  transition: background-color 0.3s ease;
 }
 
 .deleteBtn {
@@ -93,4 +94,12 @@
 .editBtn {
   composes: button;
   background-color: var(--accent-primary);
+}
+
+.deleteBtn:hover {
+  background-color: #e74a3cbe;
+}
+
+.editBtn:hover {
+  background-color: #8baa36c7;
 }

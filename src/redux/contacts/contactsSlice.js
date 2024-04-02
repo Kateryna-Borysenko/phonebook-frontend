@@ -4,6 +4,7 @@ import {
   getSingleContact,
   updateFavoriteStatus,
   createContact,
+  deleteContact,
 } from './contactsOperations';
 
 const initialState = {
@@ -47,7 +48,7 @@ export const contactsSlice = createSlice({
         state.data.error = payload;
       })
 
-      // ***************  GET SINGLE CONTACT  ************** //
+      // *************  GET SINGLE CONTACT  ************ //
 
       .addCase(getSingleContact.pending, state => {
         state.data.loading = true;
@@ -76,7 +77,24 @@ export const contactsSlice = createSlice({
         state.data.error = payload;
       })
 
-      // ***************  UPDATE FAVORITE CONTACT STATUS *************** //
+      // ***************  DELETE CONTACT  *************** //
+
+      .addCase(deleteContact.pending, state => {
+        state.data.loading = true;
+        state.data.error = null;
+      })
+      .addCase(deleteContact.fulfilled, (state, { payload }) => {
+        state.data.loading = false;
+        state.data.contacts = state.data.contacts.filter(
+          contact => contact._id !== payload,
+        );
+      })
+      .addCase(deleteContact.rejected, (state, { payload }) => {
+        state.data.loading = false;
+        state.data.error = payload;
+      })
+
+      // ********  UPDATE FAVORITE CONTACT STATUS ******** //
 
       .addCase(updateFavoriteStatus.pending, state => {
         state.data.loading = true;

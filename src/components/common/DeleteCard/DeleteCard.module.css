@@ -1,4 +1,6 @@
 .title {
+  text-align: center;
+  font-weight: 400;
   margin-bottom: 24px;
 }
 
@@ -10,6 +12,7 @@
   min-width: 120px;
   color: var(--white);
   letter-spacing: 1px;
+  transition: background-color 0.3s ease;
 }
 
 .btnWrapper {
@@ -26,4 +29,12 @@
 .cancelBtn {
   composes: button;
   background-color: var(--accent-primary);
+}
+
+.yesBtn:hover {
+  background-color: #e74a3cbe;
+}
+
+.cancelBtn:hover {
+  background-color: #8baa36c7;
 }

@@ -1,6 +1,5 @@
 import Meta from '../../components/common/Meta/Meta';
 import SignInForm from '../../components/forms/SignInForm/SignInForm';
-import s from './SignInPage.module.css';
 
 const SignInPage = () => {
   return (

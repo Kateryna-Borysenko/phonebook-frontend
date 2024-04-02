@@ -66,6 +66,25 @@ export const createContact = createAsyncThunk(
   },
 );
 
+export const deleteContact = createAsyncThunk(
+  'contacts/deleteContact',
+  async ({ id }, { rejectWithValue }) => {
+    try {
+      const response = await axios.delete(
+        `${CONTACTS_ENDPOINT.CONTACTS}/${id}`,
+      );
+      return toast.success(response?.data?.message);
+    } catch (error) {
+      if (error.response && error.response.status === 404) {
+        toast.error('Contact not found');
+        return rejectWithValue('Contact not found.');
+      } else {
+        return rejectWithValue('An error occurred while deleting the contact.');
+      }
+    }
+  },
+);
+
 export const updateFavoriteStatus = createAsyncThunk(
   'contacts/updateFavoriteStatus',
   async ({ id, favorite }, { rejectWithValue }) => {
@@ -76,9 +95,11 @@ export const updateFavoriteStatus = createAsyncThunk(
           favorite,
         },
       );
+      toast.success('Contact status updated successfully!');
       return response.data;
     } catch (error) {
       if (error.response && error.response.status === 404) {
+        toast.error('Contact not found');
         return rejectWithValue('Contact not found.');
       } else {
         return rejectWithValue(
