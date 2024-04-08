@@ -11,6 +11,7 @@ import Modal from '../../components/common/Modal/Modal';
 import DeleteCard from '../../components/common/DeleteCard/DeleteCard';
 import EditContactForm from '../../components/forms/EditContactForm/EditContactForm';
 import { StarIcon } from '../../components/Icon';
+import GoBack from '../../components/common/GoBack/GoBack';
 import s from './SingleContactPage.module.css';
 
 const SingleContactPage = () => {
@@ -48,6 +49,7 @@ const SingleContactPage = () => {
 
   return (
     <div className={s.container}>
+      <GoBack />
       <Meta title="Contact Details" />
       <div className={s.nameWrapper}>
         <div className={s.name}>{name} </div>
