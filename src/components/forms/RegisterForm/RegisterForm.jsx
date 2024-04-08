@@ -19,13 +19,6 @@ const RegisterForm = () => {
   const loading = useSelector(getLoading);
   const dispatch = useDispatch();
 
-  const initialFormValues = {
-    name: 'kate',
-    email: 'k.bor@ukr.net',
-    password: 'Qwe12345!',
-    confirmPassword: 'Qwe12345!',
-  }; //!test
-
   const {
     register,
     handleSubmit,
@@ -34,7 +27,6 @@ const RegisterForm = () => {
   } = useForm({
     mode: 'onBlur',
     resolver: yupResolver(registrationFormSchema),
-    defaultValues: initialFormValues, //!test
   });
 
   const onSubmit = data => {

@@ -19,11 +19,6 @@ const SignInForm = () => {
   const loading = useSelector(getLoading);
   const dispatch = useDispatch();
 
-  const initialFormValues = {
-    email: 'k.bor@ukr.net',
-    password: 'Qwe12345!',
-  }; //!test
-
   const {
     register,
     handleSubmit,
@@ -32,7 +27,6 @@ const SignInForm = () => {
   } = useForm({
     mode: 'onBlur',
     resolver: yupResolver(signInFormSchema),
-    defaultValues: initialFormValues, //!test
   });
 
   const onSubmit = data => {
