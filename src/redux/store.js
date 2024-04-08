@@ -17,7 +17,7 @@ import { contactsSlice } from '../redux/contacts/contactsSlice';
 const persistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['user'],
+  whitelist: ['user', 'token'],
 };
 
 export const store = configureStore({

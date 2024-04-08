@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
+  setTokenAuthInstance,
+  clearTokenAuthInstance,
   registerUser,
   loginUser,
   logoutUser,
@@ -8,6 +10,7 @@ import {
 
 const initialState = {
   user: { name: '', email: '', avatarURL: '', isLoggedIn: false },
+  token: '',
   loading: false,
   error: null,
 };
@@ -15,16 +18,7 @@ const initialState = {
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {
-    setExpirationTime: (state, action) => {
-      const oneHourInMillis = 60 * 60 * 1000;
-      const expirationTime = Date.now() + oneHourInMillis;
-      localStorage.setItem('expirationTime', expirationTime);
-    },
-    removeExpirationTime: (state, action) => {
-      localStorage.removeItem('expirationTime');
-    },
-  },
+  reducers: {},
   extraReducers: builder => {
     builder
 
@@ -49,6 +43,8 @@ export const authSlice = createSlice({
         state.loading = true;
       })
       .addCase(loginUser.fulfilled, (state, { payload }) => {
+        state.token = payload.token;
+        setTokenAuthInstance(payload.token);
         state.user.isLoggedIn = true;
         state.user.name = payload.user.name;
         state.user.email = payload.user.email;
@@ -66,13 +62,9 @@ export const authSlice = createSlice({
         state.error = null;
         state.loading = true;
       })
-      .addCase(logoutUser.fulfilled, (state, { payload }) => {
-        state.user.email = '';
-        state.user.name = '';
-        state.user.avatarURL = '';
-        state.user.isLoggedIn = false;
-        state.loading = false;
-        state.error = null;
+      .addCase(logoutUser.fulfilled, () => {
+        clearTokenAuthInstance();
+        return initialState;
       })
       .addCase(logoutUser.rejected, (state, { payload }) => {
         state.error = payload;

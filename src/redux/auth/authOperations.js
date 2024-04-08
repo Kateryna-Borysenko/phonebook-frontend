@@ -4,9 +4,14 @@ import { toast } from 'react-toastify';
 import { AUTH_ENDPOINT } from '../../helpers/endpoints/authEndpoint';
 
 const SERVER_URL = process.env.REACT_APP_SERVER_BASE_URL;
-
 axios.defaults.baseURL = SERVER_URL;
-axios.defaults.withCredentials = true;
+// axios.defaults.withCredentials = true;
+
+export const setTokenAuthInstance = token =>
+  (axios.defaults.headers.common.Authorization = `Bearer ${token}`);
+
+export const clearTokenAuthInstance = () =>
+  (axios.defaults.headers.common.Authorization = '');
 
 export const registerUser = createAsyncThunk(
   'auth/registerUser',
@@ -69,15 +74,11 @@ export const initiateGoogleAuth = createAsyncThunk(
 
 export const logoutUser = createAsyncThunk(
   'auth/logoutUser',
-  async (credentials, ThunkAPI) => {
+  async (_, ThunkAPI) => {
     try {
-      const { data } = await axios.post(AUTH_ENDPOINT.LOGOUT, credentials);
-      toast.success(data.message);
-      return data;
+      await axios.post(AUTH_ENDPOINT.LOGOUT);
+      return;
     } catch (error) {
-      if (error.response.status === 401) {
-        toast.error(error.response?.data?.message || 'Something went wrong');
-      }
       return ThunkAPI.rejectWithValue(error.message);
     }
   },
