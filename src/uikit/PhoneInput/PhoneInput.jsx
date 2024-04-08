@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import InputMask from 'react-input-mask';
 import s from '../Input/Input.module.css';
 import ErrorMsg from '../../components/common/ErrorMsg/ErrorMsg.jsx';
@@ -11,18 +12,31 @@ const PhoneInput = ({
   touchedFields,
   defaultValue,
 }) => {
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    if (defaultValue) {
+      inputRef.current.value = defaultValue;
+    }
+  }, [defaultValue]);
+
   const isError = errors && !!errors[name];
   const isTouched = !!touchedFields[name];
 
   return (
     <div className={s.container}>
-      <InputMask mask="(999) 999-9999" maskChar="_" {...register(name)}>
+      <InputMask
+        mask="(999) 999-9999"
+        maskChar="_"
+        defaultValue={defaultValue}
+        {...register(name)}
+      >
         {inputProps => (
           <input
             className={s.input}
             placeholder="Phone"
             id={name}
-            defaultValue={defaultValue} // Устанавливаем значение по умолчанию
+            ref={inputRef}
             {...inputProps}
           />
         )}

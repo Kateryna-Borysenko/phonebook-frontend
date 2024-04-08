@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import s from './Pagination.module.css';
 
 const Pagination = ({ totalRecords, pageLimit, currentPage, onPageChange }) => {
