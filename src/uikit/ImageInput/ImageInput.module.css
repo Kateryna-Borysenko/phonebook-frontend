@@ -1,4 +1,11 @@
 .container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.label {
   position: relative;
   display: flex;
   justify-content: center;
@@ -10,6 +17,7 @@
   border-radius: 50%;
   cursor: pointer;
   object-fit: cover;
+  border: 2px solid var(--white);
 }
 
 .fileInput {
@@ -18,7 +26,6 @@
 }
 
 .button {
-  position: absolute;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -27,15 +34,13 @@
   box-sizing: border-box;
   width: 120px;
   height: 38px;
+  margin-top: 34px;
   color: var(--white);
   letter-spacing: 1px;
   transition:
     background-color 0.3s ease,
     color 0.3s ease;
   background-color: var(--accent-primary);
-  bottom: -60px;
-  left: 50%;
-  transform: translateX(-50%);
 }
 
 .button:hover {

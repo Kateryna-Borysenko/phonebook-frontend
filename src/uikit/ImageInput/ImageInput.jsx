@@ -41,8 +41,8 @@ const ImageInput = ({ savedImage }) => {
   };
 
   return (
-    <>
-      <label className={s.container}>
+    <div className={s.container}>
+      <label className={s.label}>
         <img className={s.img} src={savedImage} alt="Avatar" />
         <input
           className={s.fileInput}
@@ -53,9 +53,9 @@ const ImageInput = ({ savedImage }) => {
         />
       </label>
       <button className={s.button} onClick={handleUpload}>
-        {loading ? <Spinner color="#fff" size="10px" /> : 'Change'}
+        {loading ? <Spinner color="#fff" size="10px" /> : 'submit'}
       </button>
-    </>
+    </div>
   );
 };
 

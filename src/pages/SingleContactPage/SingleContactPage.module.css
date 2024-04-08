@@ -15,27 +15,13 @@
 }
 
 .avatar {
-  width: 250px;
+  width: 150px;
   padding: 8px;
   box-sizing: border-box;
   border-radius: 50%;
   border: 1px solid var(--white);
 }
 
-.avatarPopup {
-  position: absolute;
-  top: 0px;
-  right: -80px;
-  padding: 4px;
-  border-radius: 2px;
-  background-color: #ffffff2c;
-  font-weight: 300;
-  font-size: 12px;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
-
-.avatarWrapper:hover .avatarPopup,
 .nameWrapper:hover .favoritePopup {
   opacity: 1;
 }

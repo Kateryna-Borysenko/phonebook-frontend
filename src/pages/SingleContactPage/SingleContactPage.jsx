@@ -49,7 +49,6 @@ const SingleContactPage = () => {
           <Meta title="Contact Details" />
           <div className={s.avatarWrapper}>
             <UserIcon stroke="white" className={s.avatar} />
-            <div className={s.avatarPopup}>Upload new avatar</div>
           </div>
           <div className={s.nameWrapper}>
             <div className={s.name}>{name} </div>
