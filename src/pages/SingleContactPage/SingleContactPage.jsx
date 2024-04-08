@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import {
   deleteContact,
   updateFavoriteStatus,
@@ -7,10 +8,10 @@ import {
 import { getSingleContact } from '../../redux/contacts/contactsSelectors';
 import Meta from '../../components/common/Meta/Meta';
 import Modal from '../../components/common/Modal/Modal';
-import DeLeteCard from '../../components/common/DeleteCard/DeleteCard';
+import DeleteCard from '../../components/common/DeleteCard/DeleteCard';
+import EditContactForm from '../../components/forms/EditContactForm/EditContactForm';
 import { StarIcon, UserIcon } from '../../components/Icon';
 import s from './SingleContactPage.module.css';
-import { useNavigate } from 'react-router-dom';
 
 const SingleContactPage = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,7 @@ const SingleContactPage = () => {
   const { _id, name, phone, favorite } = contact;
   const [isFavorite, setIsFavorite] = useState(favorite);
   const [isOpen, setIsOpen] = useState(false);
+  const [actionType, setActionType] = useState(null);
 
   useEffect(() => {
     setIsFavorite(favorite);
@@ -29,13 +31,14 @@ const SingleContactPage = () => {
     setIsFavorite(prev => !prev);
   };
 
-  const toggleModal = () => {
+  const toggleModal = type => {
+    setActionType(type);
     setIsOpen(prev => !prev);
   };
 
   const handleDeleteContact = () => {
     dispatch(deleteContact({ id: _id }));
-    toggleModal();
+    toggleModal(null);
     navigate('/contacts');
   };
 
@@ -66,11 +69,15 @@ const SingleContactPage = () => {
           <div className={s.phone}>{phone}</div>
 
           <div className={s.btnWrapper}>
-            <button onClick={toggleModal} className={s.deleteBtn} type="button">
+            <button
+              onClick={() => toggleModal('delete')}
+              className={s.deleteBtn}
+              type="button"
+            >
               Delete
             </button>
             <button
-              onClick={toggleModal}
+              onClick={() => toggleModal('edit')}
               className={s.editBtn}
               type="button"
               disabled=""
@@ -79,11 +86,14 @@ const SingleContactPage = () => {
             </button>
           </div>
           {isOpen && (
-            <Modal onClose={toggleModal}>
-              <DeLeteCard
-                onClose={toggleModal}
-                onDelete={handleDeleteContact}
-              />
+            <Modal onClose={() => toggleModal(null)}>
+              {actionType === 'delete' && (
+                <DeleteCard
+                  onClose={() => toggleModal(null)}
+                  onDelete={handleDeleteContact}
+                />
+              )}
+              {actionType === 'edit' && <EditContactForm />}
             </Modal>
           )}
         </>
