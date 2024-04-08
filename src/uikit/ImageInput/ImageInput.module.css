@@ -1,0 +1,43 @@
+.container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  cursor: pointer;
+  object-fit: cover;
+}
+
+.fileInput {
+  display: none;
+  cursor: pointer;
+}
+
+.button {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  text-transform: uppercase;
+  box-sizing: border-box;
+  width: 120px;
+  height: 38px;
+  color: var(--white);
+  letter-spacing: 1px;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+  background-color: var(--accent-primary);
+  bottom: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.button:hover {
+  background-color: #8baa36d3;
+}

@@ -4,6 +4,6 @@ export const AUTH_ENDPOINT = {
   LOGOUT: '/users/logout',
   VERIFY: '/users/verify',
   USER: '/users/current',
-  UPDATE_AVATAR: '/avatars',
+  UPDATE_AVATAR: '/users/avatars',
   GOOGLE: '/google',
 };

@@ -87,9 +87,6 @@ const SignInForm = () => {
       <p className={s.message}>
         New Here?<Link to="/register">Register</Link>
       </p>
-      <p className={s.message}>
-        <Link to="/password-reset-token">Forgot your password?</Link>
-      </p>
     </div>
   );
 };

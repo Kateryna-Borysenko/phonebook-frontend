@@ -82,3 +82,28 @@ export const logoutUser = createAsyncThunk(
     }
   },
 );
+
+export const updateUserAvatar = createAsyncThunk(
+  'auth/updateUserAvatar',
+  async (file, thunkAPI) => {
+    try {
+      const formData = new FormData();
+      formData.append('avatar', file);
+
+      const { data } = await axios.patch(
+        AUTH_ENDPOINT.UPDATE_AVATAR,
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        },
+      );
+      toast.success(data.message);
+      return data;
+    } catch (error) {
+      toast.error('Error uploading avatar.');
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  },
+);

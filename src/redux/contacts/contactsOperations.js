@@ -109,3 +109,20 @@ export const updateFavoriteStatus = createAsyncThunk(
     }
   },
 );
+
+export const addAvatar = createAsyncThunk(
+  'contacts/updateContactAvatar',
+  async ({ id }, { rejectWithValue }) => {
+    try {
+    } catch (error) {
+      if (error.response && error.response.status === 404) {
+        toast.error('Contact not found');
+        return rejectWithValue('Contact not found.');
+      } else {
+        return rejectWithValue(
+          'An error occurred while updating the favorite status.',
+        );
+      }
+    }
+  },
+);

@@ -19,6 +19,8 @@
   height: 40px;
   border-radius: 50%;
   overflow: hidden;
+  object-fit: cover;
+  outline: 1px solid var(--white);
 }
 
 .nav {
@@ -26,7 +28,7 @@
   width: 180px;
   top: 70px;
   right: 0;
-  z-index: 100;
+  z-index: 10000;
   padding: 14px;
   background-color: var(--bgGray);
   border: 1px solid var(--white);

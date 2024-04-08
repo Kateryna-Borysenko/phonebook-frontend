@@ -1,5 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { registerUser, loginUser, logoutUser } from './authOperations';
+import {
+  registerUser,
+  loginUser,
+  logoutUser,
+  updateUserAvatar,
+} from './authOperations';
 
 const initialState = {
   user: { name: '', email: '', avatarURL: '', isLoggedIn: false },
@@ -22,7 +27,8 @@ export const authSlice = createSlice({
   },
   extraReducers: builder => {
     builder
-      // register
+
+      // ***************  REGISTER  *************** //
       .addCase(registerUser.pending, state => {
         state.error = null;
         state.loading = true;
@@ -37,16 +43,17 @@ export const authSlice = createSlice({
         state.loading = false;
       })
 
-      // login
+      // ***************  LOGIN  *************** //
       .addCase(loginUser.pending, state => {
         state.error = null;
         state.loading = true;
       })
       .addCase(loginUser.fulfilled, (state, { payload }) => {
+        state.user.isLoggedIn = true;
         state.user.name = payload.user.name;
         state.user.email = payload.user.email;
-        state.user.isLoggedIn = true;
         state.user.avatarURL = payload.user.avatarURL;
+        state.user.subscription = payload.user.subscription;
         state.loading = false;
       })
       .addCase(loginUser.rejected, (state, { payload }) => {
@@ -54,7 +61,7 @@ export const authSlice = createSlice({
         state.loading = false;
       })
 
-      // logout
+      // ***************  LOGOUT  *************** //
       .addCase(logoutUser.pending, state => {
         state.error = null;
         state.loading = true;
@@ -68,6 +75,20 @@ export const authSlice = createSlice({
         state.error = null;
       })
       .addCase(logoutUser.rejected, (state, { payload }) => {
+        state.error = payload;
+        state.loading = false;
+      })
+
+      // ***************  AVATAR  *************** //
+      .addCase(updateUserAvatar.pending, state => {
+        state.error = null;
+        state.loading = true;
+      })
+      .addCase(updateUserAvatar.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.user.avatarURL = payload.avatarURL;
+      })
+      .addCase(updateUserAvatar.rejected, (state, { payload }) => {
         state.error = payload;
         state.loading = false;
       });
