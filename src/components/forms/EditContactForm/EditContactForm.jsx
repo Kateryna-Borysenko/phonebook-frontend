@@ -1,40 +1,42 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import Input from '../../../uikit/Input/Input';
-import { contactFormSchema } from '../../../schemas/contactFormSchema';
-import { normalizeUserName } from '../../../helpers/normalizeUserName';
 import Spinner from '../../common/Spinner/Spinner';
 import PhoneInput from '../../../uikit/PhoneInput/PhoneInput';
-import { getLoading } from '../../../redux/contacts/contactsSelectors';
-import { createContact } from '../../../redux/contacts/contactsOperations';
+import { contactFormSchema } from '../../../schemas/contactFormSchema';
+import { normalizeUserName } from '../../../helpers/normalizeUserName';
+import {
+  getLoading,
+  getSingleContact,
+} from '../../../redux/contacts/contactsSelectors';
+import { editContact } from '../../../redux/contacts/contactsOperations';
 import s from './EditContactForm.module.css';
 
 const EditContactForm = ({ onClose }) => {
-  // const loading = useSelector(getLoading);
-  const loading = false;
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const loading = useSelector(getLoading);
+  const contact = useSelector(getSingleContact);
 
   const {
     register,
     handleSubmit,
-    formState: { errors, touchedFields, isValid },
+    formState: { errors, touchedFields },
   } = useForm({
     mode: 'onBlur',
     resolver: yupResolver(contactFormSchema),
-    // defaultValues: initialFormValues, //!test
   });
 
   const onSubmit = data => {
-    let normalizedData = {
+    const normalizedData = {
       name: normalizeUserName(data.name),
       phone: data.phone,
     };
-
-    dispatch(createContact(normalizedData));
-    // reset();
-
-    console.log('🌷  data:', normalizedData);
+    dispatch(
+      editContact({ id: contact._id, updatedData: normalizedData }),
+    ).then(() => navigate('/contacts'));
   };
 
   return (
@@ -46,20 +48,22 @@ const EditContactForm = ({ onClose }) => {
           name="name"
           type="text"
           placeholder="Name"
+          defaultValue={contact ? contact.name : ''}
           errors={errors}
           touchedFields={touchedFields}
         />
         <PhoneInput
           name="phone"
           register={register}
+          defaultValue={contact ? contact.phone : ''}
           errors={errors}
           touchedFields={touchedFields}
         />
         <div className={s.btnWrapper}>
           <button className={s.cancelBtn} type="button" onClick={onClose}>
-            cancel
+            Cancel
           </button>
-          <button className={s.editBtn} type="submit" disabled={!isValid}>
+          <button className={s.editBtn} type="submit">
             {loading ? <Spinner color="#fff" size="10px" /> : 'Edit'}
           </button>
         </div>

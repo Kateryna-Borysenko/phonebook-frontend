@@ -10,6 +10,7 @@ const Input = ({
   placeholder,
   errors,
   touchedFields,
+  defaultValue,
 }) => {
   const isError = errors && !!errors[name];
   const isTouched = !!touchedFields[name];
@@ -20,6 +21,7 @@ const Input = ({
         {...register(name)}
         type={type}
         placeholder={placeholder}
+        defaultValue={defaultValue}
         className={s.input}
       />
       <span className={s.inputIcon}>{renderInputIcon(name)}</span>

@@ -4,7 +4,13 @@ import ErrorMsg from '../../components/common/ErrorMsg/ErrorMsg.jsx';
 import renderInputIcon from '../../helpers/renderInputIcon.js';
 import renderStateIcon from '../../helpers/renderStateIcon.js';
 
-const PhoneInput = ({ name, register, errors, touchedFields }) => {
+const PhoneInput = ({
+  name,
+  register,
+  errors,
+  touchedFields,
+  defaultValue,
+}) => {
   const isError = errors && !!errors[name];
   const isTouched = !!touchedFields[name];
 
@@ -16,6 +22,7 @@ const PhoneInput = ({ name, register, errors, touchedFields }) => {
             className={s.input}
             placeholder="Phone"
             id={name}
+            defaultValue={defaultValue} // Устанавливаем значение по умолчанию
             {...inputProps}
           />
         )}

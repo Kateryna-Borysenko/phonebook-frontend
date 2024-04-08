@@ -110,18 +110,23 @@ export const updateFavoriteStatus = createAsyncThunk(
   },
 );
 
-export const addAvatar = createAsyncThunk(
-  'contacts/updateContactAvatar',
-  async ({ id }, { rejectWithValue }) => {
+export const editContact = createAsyncThunk(
+  'contacts/editContact',
+  async ({ id, updatedData }, { rejectWithValue }) => {
     try {
+      const response = await axios.put(
+        `${CONTACTS_ENDPOINT.CONTACTS}/${id}`,
+        updatedData,
+      );
+      toast.success('Contact updated successfully!');
+      return response.data;
     } catch (error) {
       if (error.response && error.response.status === 404) {
         toast.error('Contact not found');
         return rejectWithValue('Contact not found.');
       } else {
-        return rejectWithValue(
-          'An error occurred while updating the favorite status.',
-        );
+        toast.error('An error occurred while updating the contact.');
+        return rejectWithValue('An error occurred while updating the contact.');
       }
     }
   },

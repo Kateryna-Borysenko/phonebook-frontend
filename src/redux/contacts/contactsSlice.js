@@ -5,6 +5,7 @@ import {
   updateFavoriteStatus,
   createContact,
   deleteContact,
+  editContact,
 } from './contactsOperations';
 
 const initialState = {
@@ -55,6 +56,7 @@ export const contactsSlice = createSlice({
         state.data.error = null;
       })
       .addCase(getSingleContact.fulfilled, (state, { payload }) => {
+        state.data.loading = false;
         state.data.contact = payload;
       })
       .addCase(getSingleContact.rejected, (state, { payload }) => {
@@ -90,6 +92,26 @@ export const contactsSlice = createSlice({
         );
       })
       .addCase(deleteContact.rejected, (state, { payload }) => {
+        state.data.loading = false;
+        state.data.error = payload;
+      })
+
+      // ***************  EDIT CONTACT  *************** //
+
+      .addCase(editContact.pending, state => {
+        state.data.loading = true;
+        state.data.error = null;
+      })
+      .addCase(editContact.fulfilled, (state, { payload }) => {
+        state.data.loading = false;
+        const existingContactIndex = state.data.contacts.findIndex(
+          contact => contact._id === payload._id,
+        );
+        if (existingContactIndex !== -1) {
+          state.data.contacts[existingContactIndex] = payload;
+        }
+      })
+      .addCase(editContact.rejected, (state, { payload }) => {
         state.data.loading = false;
         state.data.error = payload;
       })
