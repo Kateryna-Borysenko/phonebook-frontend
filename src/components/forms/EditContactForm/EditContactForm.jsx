@@ -8,18 +8,12 @@ import Spinner from '../../common/Spinner/Spinner';
 import PhoneInput from '../../../uikit/PhoneInput/PhoneInput';
 import { getLoading } from '../../../redux/contacts/contactsSelectors';
 import { createContact } from '../../../redux/contacts/contactsOperations';
-import s from './ContactForm.module.css';
+import s from './EditContactForm.module.css';
 
-const ContactForm = () => {
-  const loading = useSelector(getLoading);
+const EditContactForm = ({ onClose }) => {
+  // const loading = useSelector(getLoading);
+  const loading = false;
   const dispatch = useDispatch();
-
-  // const initialFormValues = {
-  //   avatarURL: '',
-  //   name: 'kate',
-  //   email: 'k.bor@ukr.net',
-  //   phone: '1234567890',
-  // }; //!test
 
   const {
     register,
@@ -45,7 +39,7 @@ const ContactForm = () => {
 
   return (
     <div className={s.container}>
-      <h2 className={s.title}>Contact Form</h2>
+      <h2 className={s.title}>Edit Contact</h2>
       <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
         <Input
           register={register}
@@ -61,13 +55,17 @@ const ContactForm = () => {
           errors={errors}
           touchedFields={touchedFields}
         />
-
-        <button className={s.submitBtn} type="submit" disabled={!isValid}>
-          {loading ? <Spinner color="#fff" size="10px" /> : 'Add Contact'}
-        </button>
+        <div className={s.btnWrapper}>
+          <button className={s.cancelBtn} type="button" onClick={onClose}>
+            cancel
+          </button>
+          <button className={s.editBtn} type="submit" disabled={!isValid}>
+            {loading ? <Spinner color="#fff" size="10px" /> : 'Edit'}
+          </button>
+        </div>
       </form>
     </div>
   );
 };
 
-export default ContactForm;
+export default EditContactForm;

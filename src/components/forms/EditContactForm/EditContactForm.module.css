@@ -1,0 +1,59 @@
+.container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.title {
+  color: var(--white);
+  margin-bottom: 24px;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.07;
+}
+
+.form {
+  width: 100%;
+}
+
+.btnWrapper {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.button {
+  border: none;
+  text-transform: uppercase;
+  padding: 8px 12px;
+  box-sizing: border-box;
+  min-width: 120px;
+  width: 100%;
+  color: var(--white);
+  letter-spacing: 1px;
+  transition: background-color 0.3s ease;
+  transition: color 0.3s ease;
+}
+
+.btnWrapper {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.editBtn {
+  composes: button;
+  background-color: var(--accent-primary);
+}
+
+.cancelBtn {
+  composes: button;
+  color: #008000;
+}
+
+.editBtn:hover {
+  background-color: #8baa36d3;
+}
+
+.cancelBtn:hover {
+  color: var(--text-color-primary);
+}

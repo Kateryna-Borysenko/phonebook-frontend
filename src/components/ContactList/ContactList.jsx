@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getContacts } from '../../redux/contacts/contactsOperations';
 import {
   getAllContacts,
-  getCurrentPage,
   getTotalPages,
   getPageSize,
   getTotalContacts,
@@ -25,30 +24,29 @@ const ContactList = () => {
   const totalContacts = useSelector(getTotalContacts);
   const loading = useSelector(getLoading);
 
-  const [currentPage, setCurrentPage] = useState(useSelector(getCurrentPage));
-  const [showFavorites, setShowFavorites] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
   const [activeButton, setActiveButton] = useState('All');
+  const [showFavorites, setShowFavorites] = useState(false);
 
   useEffect(() => {
-    if (!showFavorites) {
+    if (currentPage !== null) {
       dispatch(getContacts({ page: currentPage }));
-    } else {
-      dispatch(getContacts({ favorite: showFavorites, page: currentPage }));
     }
-  }, [dispatch, showFavorites, currentPage, activeButton]);
+  }, [dispatch, currentPage]);
 
   const sortedAndGroupedContacts = useMemo(() => {
     return sortAndGroupContacts(contacts);
   }, [contacts]);
 
   const handleShowFavorites = () => {
-    setShowFavorites(true);
+    dispatch(getContacts({ favorite: true, page: currentPage }));
     setCurrentPage(1);
     setActiveButton('Favorites');
   };
 
   const handleShowAll = () => {
-    setShowFavorites(null);
+    dispatch(getContacts({ page: currentPage }));
+    setShowFavorites(false);
     setCurrentPage(1);
     setActiveButton('All');
   };

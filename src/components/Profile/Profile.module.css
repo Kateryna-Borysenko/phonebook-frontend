@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 350px;
+  min-width: 350px;
   padding: 44px;
   box-sizing: border-box;
   background-color: var(--bgGray);
