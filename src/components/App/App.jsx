@@ -1,4 +1,6 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '../../assets/styles/global.module.css';
@@ -13,8 +15,37 @@ import PrivateRoutes from '../../routes/PrivateRoutes';
 import EmailConfirmedPage from '../../pages/EmailConfirmedPage/EmailConfirmedPage';
 import ProfilePage from '../../pages/ProfilePage/ProfilePage';
 import SingleContactPage from '../../pages/SingleContactPage/SingleContactPage';
+import Spinner from '../common/Spinner/Spinner';
+import { refreshUser } from '../../redux/auth/authOperations';
+import { useAuth } from '../../hooks/useAuth';
 
 const App = () => {
+  const dispatch = useDispatch();
+
+  const { refreshingStatus } = useAuth();
+
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+
+  if (refreshingStatus) {
+    return (
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: '#121212fa',
+          height: '100vh',
+        }}
+      >
+        <div>
+          <Spinner size="20px" />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <>
       <ToastContainer position="top-right" autoClose={5000} theme="dark" />

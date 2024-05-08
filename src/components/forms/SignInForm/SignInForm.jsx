@@ -10,7 +10,6 @@ import s from './SignInForm.module.css';
 import Spinner from '../../common/Spinner/Spinner';
 import { getLoading } from '../../../redux/auth/authSelectors';
 import { loginUser } from '../../../redux/auth/authOperations';
-import GoogleAuth from '../../GoogleAuth/GoogleAuth';
 
 const SignInForm = () => {
   const [showPassword, setShowPassword] = useState(false);

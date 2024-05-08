@@ -5,5 +5,5 @@ export const AUTH_ENDPOINT = {
   VERIFY: '/users/verify',
   USER: '/users/current',
   UPDATE_AVATAR: '/users/avatars',
-  GOOGLE: '/google',
+  REFRESH: '/users/current',
 };

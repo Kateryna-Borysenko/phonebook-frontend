@@ -58,15 +58,18 @@ export const loginUser = createAsyncThunk(
   },
 );
 
-export const initiateGoogleAuth = createAsyncThunk(
-  'auth/GoogleAuth',
+export const refreshUser = createAsyncThunk(
+  'auth/refreshUser',
   async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const token = state.auth.token;
+    if (!token) return thunkAPI.rejectWithValue("You don't have a token!");
+
     try {
-      const { data } = await axios.get(AUTH_ENDPOINT.GOOGLE);
-      console.log('🌷  response :', data);
+      setTokenAuthInstance(token);
+      const { data } = await axios.get(AUTH_ENDPOINT.REFRESH);
       return data;
     } catch (error) {
-      toast.error(error);
       return thunkAPI.rejectWithValue(error.message);
     }
   },

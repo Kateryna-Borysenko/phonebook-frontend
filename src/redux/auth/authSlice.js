@@ -3,6 +3,7 @@ import {
   setTokenAuthInstance,
   clearTokenAuthInstance,
   registerUser,
+  refreshUser,
   loginUser,
   logoutUser,
   updateUserAvatar,
@@ -11,6 +12,7 @@ import {
 const initialState = {
   user: { name: '', email: '', avatarURL: '', isLoggedIn: false },
   token: '',
+  isRefreshing: false,
   loading: false,
   error: null,
 };
@@ -55,6 +57,22 @@ export const authSlice = createSlice({
       .addCase(loginUser.rejected, (state, { payload }) => {
         state.error = payload;
         state.loading = false;
+      })
+
+      // ************** REFRESH  ************** //
+      .addCase(refreshUser.pending, state => {
+        state.isRefreshing = true;
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(refreshUser.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.isLoggedIn = true;
+        state.isRefreshing = false;
+        state.user = { ...payload.user };
+      })
+      .addCase(refreshUser.rejected, state => {
+        state.isRefreshing = false;
       })
 
       // ***************  LOGOUT  *************** //
