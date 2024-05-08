@@ -14,21 +14,14 @@ const ContactForm = () => {
   const loading = useSelector(getLoading);
   const dispatch = useDispatch();
 
-  // const initialFormValues = {
-  //   avatarURL: '',
-  //   name: 'kate',
-  //   email: 'k.bor@ukr.net',
-  //   phone: '1234567890',
-  // }; //!test
-
   const {
     register,
     handleSubmit,
     formState: { errors, touchedFields, isValid },
+    reset,
   } = useForm({
     mode: 'onBlur',
     resolver: yupResolver(contactFormSchema),
-    // defaultValues: initialFormValues, //!test
   });
 
   const onSubmit = data => {
@@ -38,9 +31,7 @@ const ContactForm = () => {
     };
 
     dispatch(createContact(normalizedData));
-    // reset();
-
-    console.log('🌷  data:', normalizedData);
+    reset();
   };
 
   return (

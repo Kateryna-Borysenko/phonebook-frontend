@@ -73,9 +73,6 @@ const SignInForm = () => {
           {loading ? <Spinner color="#fff" size="10px" /> : 'Sign In'}
         </button>
       </form>
-      <span className={s.text}>or</span>
-      <GoogleAuth title="Log In with Google" />
-
       <p className={s.message}>
         New Here?<Link to="/register">Register</Link>
       </p>
